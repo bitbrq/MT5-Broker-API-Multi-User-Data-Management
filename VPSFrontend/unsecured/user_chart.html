@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACI Group</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <style>
+    #analytics .grid {
+        min-height: 300px; /* Ensures all chart containers are the same height */
+    }
+    
+    canvas {
+        height: 250px !important;
+        width: 100% !important;
+    }
+    .checked-label {
+        background-color: #f0f0f0;
+        border-color: #4a90e2;
+        color: #062dba;
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body class="bg-gray-100 text-xs p-4 grid grid-cols-1">
+
+<div>
+    <h1 class="text-4xl"><b>ACI Group</b></h1><br>
+</div>
+<div class="grid grid-cols-6 gap-x-2 gap-y-6">    
+    <div class="col-span-4 bg-white shadow-lg rounded-lg">
+        <!-- Tabs -->
+        <div class="flex items-center border-b rounded-lg bg-blue-700">
+            <label class="p-2 pr-4 font-bold text-white border-b-2 border-transparent">Chart</label>
+            <label for="chart-growth" class="cursor-pointer py-1 px-2 mr-1 text-white hover:text-blue-700 border border-white rounded-lg hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Growth</label>
+            <label for="chart-balance" class="cursor-pointer py-1 px-2 mr-1 text-white hover:text-blue-700 border border-white rounded-lg hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Balance</label>
+            <label for="chart-profit" class="cursor-pointer py-1 px-2 mr-1 text-white hover:text-blue-700 border border-white rounded-lg hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Profit</label>
+            <label for="chart-drawdown" class="cursor-pointer py-1 px-2 mr-1 text-white hover:text-blue-700 border border-white rounded-lg hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Drawdown</label>
+            <label for="chart-deposit" class="cursor-pointer py-1 px-2 mr-1 text-white hover:text-blue-700 border border-white rounded-lg hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Deposit</label>
+        </div>
+
+        <!-- Tab Content -->
+        <input type="radio" name="chart" id="chart-growth" class="hidden peer/chart-growth" checked>
+        <div class="hidden peer-checked/chart-growth:block px-2 py-4">
+            <canvas id="chart-growth-content">Content for growth</canvas>
+        </div>
+        <input type="radio" name="chart" id="chart-balance" class="hidden peer/chart-balance">
+        <div class="hidden peer-checked/chart-balance:block px-2 py-4">
+            <canvas id="chart-balance-content">Content for balance</canvas>
+        </div>
+        <input type="radio" name="chart" id="chart-profit" class="hidden peer/chart-profit">
+        <div class="hidden peer-checked/chart-profit:block px-2 py-4">
+            <canvas id="chart-profit-content">Content for profit</canvas>
+        </div>
+        <input type="radio" name="chart" id="chart-drawdown" class="hidden peer/chart-drawdown">
+        <div class="hidden peer-checked/chart-drawdown:block px-2 py-4">
+            <canvas id="chart-drawdown-content">Content for drawdown</canvas>
+        </div>
+        <input type="radio" name="chart" id="chart-deposit" class="hidden peer/chart-deposit">
+        <div class="hidden peer-checked/chart-deposit:block px-2 py-4">
+            <canvas id="chart-deposit-content">Content for deposit</canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Chart Module
+    async function user_chart() {
+        // Fetch Data
+        const chart_data = JSON.parse(sessionStorage.getItem("user_chart"));
+
+        // Function to create the chart
+        function createChart(data, type, divID, title, xLabel, yLabel) {
+            // Extract dates and amounts
+            let dates = data.map(item => item[0]); // Dates as strings
+            let amounts = data.map(item => item[1]);
+
+            // Chart configuration
+            let myChart = new Chart(divID, {
+                type: type,
+                data: {
+                    labels: dates, // Use date strings as labels
+                    datasets: [{
+                        label: yLabel,
+                        data: amounts,
+                        borderColor: 'rgba(3, 48, 161, 1)',
+                        backgroundColor: 'rgba(3, 48, 161, 0.2)',
+                        borderWidth: 1,
+                        pointRadius: 0,
+                        fill: true,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'category', // Treat x-axis as categorical data
+                            title: {
+                                display: true,
+                                text: xLabel
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: yLabel
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Get the context for each canvas
+        const chart_growth = document.getElementById('chart-growth-content').getContext('2d');
+        const chart_balance = document.getElementById('chart-balance-content').getContext('2d');
+        const chart_profit = document.getElementById('chart-profit-content').getContext('2d');
+        const chart_drawdown = document.getElementById('chart-drawdown-content').getContext('2d');
+        const chart_deposit = document.getElementById('chart-deposit-content').getContext('2d');
+
+        // Clear the old content from each canvas
+        chart_growth.clearRect(0, 0, chart_growth.canvas.width, chart_growth.canvas.height);
+        chart_balance.clearRect(0, 0, chart_balance.canvas.width, chart_balance.canvas.height);
+        chart_profit.clearRect(0, 0, chart_profit.canvas.width, chart_profit.canvas.height);
+        chart_drawdown.clearRect(0, 0, chart_drawdown.canvas.width, chart_drawdown.canvas.height);
+        chart_deposit.clearRect(0, 0, chart_deposit.canvas.width, chart_deposit.canvas.height);
+
+        // Chart Growth
+        if (chart_data.growth) {
+            createChart(chart_data.growth, 'line', chart_growth, 'Growth', 'Date', 'Growth');
+        }
+        
+        // Chart Balance
+        if (chart_data.balance) {
+            createChart(chart_data.balance, 'line', chart_balance, 'Balance', 'Date', 'Balance');
+        }
+        
+        // Chart Profit
+        if (chart_data.profit) {
+            createChart(chart_data.profit, 'line', chart_profit, 'Profit', 'Date', 'Profit');
+        }
+
+        // Chart Drawdown
+        if (chart_data.drawdown) {
+            createChart(chart_data.drawdown, 'bar', chart_drawdown, 'Drawdown', 'Date', 'Drawdown');
+        }
+
+        // Chart deposit
+        if (chart_data.deposit) {
+            createChart(chart_data.deposit, 'bar', chart_deposit, 'Deposit', 'Date', 'Deposit');
+        }
+    }
+        
+    // Modules
+    const modules = {
+        user_chart: user_chart, // Map 'chart' to the `chart` function
+    };
+
+    // Function to Fetch data from API and save data in session storage
+    async function callApi(endpoint) {
+        if (sessionStorage.getItem(endpoint)) {
+            console.log(`${endpoint} Data already exists in sessionStorage. Skipping API call.`);
+            return;
+        }
+        try {
+            const response = await fetch(`http://Your-VPS-Address:4090/${endpoint}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify({ username: '1111111' })
+            });
+            // Check if the response is OK (status code 200-299)
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const apiData = await response.json();
+            if (apiData.success) {
+                sessionStorage.setItem(endpoint, JSON.stringify(apiData.data));
+                console.log(`Data for ${endpoint} saved to sessionStorage.`);
+            } else {
+                alert('Failed: ' + apiData.message);
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+    
+    // Function to call API Endpoints for each module and load its content
+    async function fetchAndLoadData() {
+        for (const module of Object.keys(modules)) {
+            await callApi(module); // Wait for the API call to complete
+            if (modules[module] && typeof modules[module] === 'function') {
+                modules[module](); // Call the module-specific function
+            } else {
+                console.warn(`Function for module ${module} does not exist.`);
+            }
+        }
+    }
+
+    // Function to check which radio buttons are checked and format their labels
+    function checkRadioButtons() {
+        // Get all radio buttons
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        
+        // Iterate through each radio button
+        radioButtons.forEach(radio => {
+            // Get the associated label using the 'for' attribute
+            const label = document.querySelector(`label[for="${radio.id}"]`);
+            
+            // If the radio button is checked, add the 'checked-label' class to the label
+            if (radio.checked) {
+                label.classList.add('checked-label');
+                label.classList.remove('text-white');
+            } else {
+                label.classList.remove('checked-label');
+                label.classList.add('text-white');
+            }
+        });
+    }
+    
+    // Load All Required on Page Startup
+    document.addEventListener('DOMContentLoaded', fetchAndLoadData);
+    // Initial check when the page loads
+    checkRadioButtons();
+
+    // Add event listeners to radio buttons to update the labels when changed
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', checkRadioButtons);
+    });
+</script> 
+</body>
+</html>

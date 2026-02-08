@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Login Form -->
+    <div id="login-container" class="flex items-center justify-center min-h-screen bg-gray-100">
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold mb-4 text-center">Login</h2>
+            <form id="login-form">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Password" required>
+                </div>
+                <div class="flex items-center justify-between">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="login()">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Account Details Button (Hidden by default) -->
+    <div id="fetch-data-container" class="hidden flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+        <div class="mb-6 w-full max-w-md">
+            <button class="w-full bg-blue-500 text-white font-bold py-4 px-6 rounded-lg text-xl hover:bg-blue-700 focus:outline-none focus:shadow-outline" onclick="getData('account_details')">Account Details</button>
+        </div>
+        <div class="mb-6 w-full max-w-md">
+            <button class="w-full bg-green-500 text-white font-bold py-4 px-6 rounded-lg text-xl hover:bg-green-700 focus:outline-none focus:shadow-outline" onclick="getData('history_deals')">History Deals</button>
+        </div>
+        <div class="mb-6 w-full max-w-md">
+            <button class="w-full bg-red-500 text-white font-bold py-4 px-6 rounded-lg text-xl hover:bg-red-700 focus:outline-none focus:shadow-outline" onclick="getData('history_orders')">History Orders</button>
+        </div>
+        <div class="mb-6 w-full max-w-md">
+            <button class="w-full bg-purple-500 text-white font-bold py-4 px-6 rounded-lg text-xl hover:bg-purple-700 focus:outline-none focus:shadow-outline" onclick="getData('all_symbol_details')">All Symbol Details</button>
+        </div>
+        <div class="mb-6 w-full max-w-md">
+            <button class="w-full bg-yellow-500 text-white font-bold py-4 px-6 rounded-lg text-xl hover:bg-yellow-600 focus:outline-none focus:shadow-outline" onclick="getData('eurusd_rates')">EURUSD Rates</button>
+        </div>
+        <div class="mb-6 w-full max-w-md">
+            <button class="w-full bg-pink-500 text-white font-bold py-4 px-6 rounded-lg text-xl hover:bg-pink-700 focus:outline-none focus:shadow-outline" onclick="getData('usdjpy_rates')">USDJPY Rates</button>
+        </div>
+        <div class="mb-6 w-full max-w-md">
+            <button class="w-full bg-indigo-500 text-white font-bold py-4 px-6 rounded-lg text-xl hover:bg-indigo-700 focus:outline-none focus:shadow-outline" onclick="getData('gbpusd_rates')">GBPUSD Rates</button>
+        </div>
+        <div class="mb-6 w-full max-w-md">
+            <button class="w-full bg-blue-500 text-white font-bold py-4 px-6 rounded-lg text-xl hover:bg-blue-700 focus:outline-none focus:shadow-outline" onclick="getData('myfx_data')">MyFX Data</button>
+        </div>
+    </div>
+
+    <script>
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            try {
+                const response = await fetch('http://Your-VPS-Address/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                const result = await response.json();
+                if (result.success) {
+                    sessionStorage.setItem('token', result.token);
+                    document.getElementById('login-container').style.display = 'none';
+                    document.getElementById('fetch-data-container').style.display = 'flex';
+                } else {
+                    alert('Login failed: ' + result.message);
+                }
+            } catch (error) {
+                alert('An error occurred during login. Please try again.');
+                console.error(error);
+            }
+        }
+
+        async function getData(endpoint) {
+            const token = sessionStorage.getItem('token');
+            if (!token) {
+                alert('You must be logged in to access this feature.');
+                return;
+            }
+            try {
+                const authResponse = await fetch(`http://Your-VPS-Address:4090/${endpoint}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    }
+                });
+                const data = await authResponse.json();
+                if (data.success) {
+                    const csvBlob = new Blob([data.data], { type: 'text/csv' });
+                    const url = window.URL.createObjectURL(csvBlob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${endpoint}.csv`;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    window.URL.revokeObjectURL(url);
+                } else {
+                    alert('Failed to fetch data: ' + data.message);
+                }
+            } catch (error) {
+                alert('An error occurred while fetching data. Please try again.');
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>

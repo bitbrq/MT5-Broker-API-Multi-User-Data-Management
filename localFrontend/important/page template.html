@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs with Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-xs p-4 grid grid-cols-1">
+    <div class="grid grid-cols-6 gap-x-2 gap-y-6">
+        <div class="col-span-1 bg-white shadow-lg rounded-lg">
+            <!-- Tabs -->
+            <div class="flex border-b bg-gray-200">
+                <label class="p-2 text-gray-600 border-b-2 border-transparent">Info</label>
+                <label for="info-stats" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Stats</label>
+                <label for="info-general" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">General</label>
+            </div>
+            
+            <!-- Tab Content -->
+            <input type="radio" name="info" id="info-stats" class="hidden peer/info-stats" checked>
+            <div class="hidden peer-checked/info-stats:block px-2 py-4 h-96">Content for stats</div>
+            
+            <input type="radio" name="info" id="info-general" class="hidden peer/info-general">
+            <div class="hidden peer-checked/info-general:block px-2 py-4 h-96">Content for general</div>
+        </div>
+        
+        <div class="col-span-5 bg-white shadow-lg rounded-lg">
+            <!-- Tabs -->
+            <div class="flex border-b bg-gray-200">
+                <label class="p-2 text-gray-600 border-b-2 border-transparent">Chart</label>
+                <label for="chart-growth" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Growth</label>
+                <label for="chart-balance" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Balance</label>
+                <label for="chart-profit" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Profit</label>
+                <label for="chart-drawdown" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Drawdown</label>
+                <label for="chart-margin" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Margin</label>
+            </div>
+            
+            <!-- Tab Content -->
+            <input type="radio" name="chart" id="chart-growth" class="hidden peer/chart-growth" checked>
+            <div class="hidden peer-checked/chart-growth:block px-2 py-4">Content for growth</div>
+            
+            <input type="radio" name="chart" id="chart-balance" class="hidden peer/chart-balance">
+            <div class="hidden peer-checked/chart-balance:block px-2 py-4">Content for balance</div>
+            
+            <input type="radio" name="chart" id="chart-profit" class="hidden peer/chart-profit">
+            <div class="hidden peer-checked/chart-profit:block px-2 py-4">Content for profit</div>
+            
+            <input type="radio" name="chart" id="chart-drawdown" class="hidden peer/chart-drawdown">
+            <div class="hidden peer-checked/chart-drawdown:block px-2 py-4">Content for drawdown</div>
+
+            <input type="radio" name="chart" id="chart-margin" class="hidden peer/chart-margin">
+            <div class="hidden peer-checked/chart-margin:block px-2 py-4">Content for margin</div>
+        </div>
+        
+        <div class="col-span-6 bg-white shadow-lg rounded-lg">
+            <!-- Tabs -->
+            <div class="flex border-b bg-gray-200">
+                <label class="p-2 text-gray-600 border-b-2 border-transparent">Trading</label>
+                <label for="trading-period" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Period</label>
+                <label for="trading-goals" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Goals</label>
+                <label for="trading-browser" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Browser</label>
+            </div>
+            
+            <!-- Tab Content -->
+            <input type="radio" name="trading" id="trading-period" class="hidden peer/trading-period" checked>
+            <div class="hidden peer-checked/trading-period:block px-2 py-4">Content for period</div>
+            
+            <input type="radio" name="trading" id="trading-goals" class="hidden peer/trading-goals">
+            <div class="hidden peer-checked/trading-goals:block px-2 py-4">Content for goals</div>
+
+            <input type="radio" name="trading" id="trading-browser" class="hidden peer/trading-browser">
+            <div class="hidden peer-checked/trading-browser:block px-2 py-4">Content for browser</div>
+        </div>
+        
+        <div class="col-span-6 bg-white shadow-lg rounded-lg">
+            <!-- Tabs -->
+            <div class="flex border-b bg-gray-200">
+                <label class="p-2 text-gray-600 border-b-2 border-transparent">Advanced Statistics</label>
+                <label for="advanced-statistics-trades" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Trades</label>
+                <label for="advanced-statistics-summary" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Summary</label>
+                <label for="advanced-statistics-hourly" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Hourly</label>
+                <label for="advanced-statistics-daily" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Daily</label>
+                <label for="advanced-statistics-risk-of-ruin" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Risk of Ruin</label>
+                <label for="advanced-statistics-duration" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Duration</label>
+                <label for="advanced-statistics-mae-mfe" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">MAE/MFE</label>
+            </div>
+            
+            <!-- Tab Content -->
+            <input type="radio" name="advanced-statistics" id="advanced-statistics-trades" class="hidden peer/advanced-statistics-trades" checked>
+            <div class="hidden peer-checked/advanced-statistics-trades:block px-2 py-4">Content for trades</div>
+            
+            <input type="radio" name="advanced-statistics" id="advanced-statistics-summary" class="hidden peer/advanced-statistics-summary">
+            <div class="hidden peer-checked/advanced-statistics-summary:block px-2 py-4">Content for summary</div>
+
+            <input type="radio" name="advanced-statistics" id="advanced-statistics-hourly" class="hidden peer/advanced-statistics-hourly">
+            <div class="hidden peer-checked/advanced-statistics-hourly:block px-2 py-4">Content for hourly</div>
+
+            <input type="radio" name="advanced-statistics" id="advanced-statistics-daily" class="hidden peer/advanced-statistics-daily" checked>
+            <div class="hidden peer-checked/advanced-statistics-daily:block px-2 py-4">Content for daily</div>
+            
+            <input type="radio" name="advanced-statistics" id="advanced-statistics-risk-of-ruin" class="hidden peer/advanced-statistics-risk-of-ruin">
+            <div class="hidden peer-checked/advanced-statistics-risk-of-ruin:block px-2 py-4">Content for risk-of-ruin</div>
+
+            <input type="radio" name="advanced-statistics" id="advanced-statistics-duration" class="hidden peer/advanced-statistics-duration">
+            <div class="hidden peer-checked/advanced-statistics-duration:block px-2 py-4">Content for duration</div>
+
+            <input type="radio" name="advanced-statistics" id="advanced-statistics-mae-mfe" class="hidden peer/advanced-statistics-mae-mfe">
+            <div class="hidden peer-checked/advanced-statistics-mae-mfe:block px-2 py-4">Content for mae-mfe</div>
+        </div>
+        
+        <div class="col-span-6 bg-white shadow-lg rounded-lg">
+            <!-- Tabs -->
+            <div class="flex border-b bg-gray-200">
+                <label class="p-2 text-gray-600 border-b-2 border-transparent">Forecast</label>
+            </div>
+            
+            <!-- Tab Content -->
+            <div class="block px-2 py-4 h-96">Content for forecast</div>
+        </div>
+        
+        <div class="col-span-6 bg-white shadow-lg rounded-lg">
+            <!-- Tabs -->
+            <div class="flex border-b bg-gray-200">
+                <label class="p-2 text-gray-600 border-b-2 border-transparent">Trading Activity</label>
+                <label for="trading-activity-open-trades" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Open Trades</label>
+                <label for="trading-activity-open-orders" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Open Orders</label>
+                <label for="trading-activity-history" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">History</label>
+                <label for="trading-activity-exposure" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Exposure</label>
+            </div>
+            
+            <!-- Tab Content -->
+            <input type="radio" name="trading-activity" id="trading-activity-open-trades" class="hidden peer/trading-activity-open-trades" checked>
+            <div class="hidden peer-checked/trading-activity-open-trades:block px-2 py-4">Content for open-trades</div>
+            
+            <input type="radio" name="trading-activity" id="trading-activity-open-orders" class="hidden peer/trading-activity-open-orders">
+            <div class="hidden peer-checked/trading-activity-open-orders:block px-2 py-4">Content for open-orders</div>
+
+            <input type="radio" name="trading-activity" id="trading-activity-history" class="hidden peer/trading-activity-history">
+            <div class="hidden peer-checked/trading-activity-history:block px-2 py-4">Content for history</div>
+
+            <input type="radio" name="trading-activity" id="trading-activity-exposure" class="hidden peer/trading-activity-exposure">
+            <div class="hidden peer-checked/trading-activity-exposure:block px-2 py-4">Content for exposure</div>
+        </div>
+        
+        <div class="col-span-6 bg-white shadow-lg rounded-lg">
+            <!-- Tabs -->
+            <div class="flex border-b bg-gray-200">
+                <label class="p-2 text-gray-600 border-b-2 border-transparent">Monthly Analytics</label>
+                <label for="monthly-analytics-2024" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">2024</label>
+                <label for="monthly-analytics-2025" class="cursor-pointer font-bold p-2 text-gray-600 bg-gray-300 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">2025</label>
+            </div>
+            
+            <!-- Tab Content -->
+            <input type="radio" name="monthly-analytics" id="monthly-analytics-2024" class="hidden peer/monthly-analytics-2024" checked>
+            <div class="hidden peer-checked/monthly-analytics-2024:block px-2 py-4 w-full">
+                <div class="grid grid-cols-2">
+                    <div class="col-span-1 h-64 border">2024 Month 1</div>
+                    <div class="col-span-1 h-64 border">2024 Month 2</div>
+                    <div class="col-span-1 h-64 border">2024 Month 3</div>
+                    <div class="col-span-1 h-64 border">2024 Month 4</div>
+                </div>
+            </div>
+            
+            <input type="radio" name="monthly-analytics" id="monthly-analytics-2025" class="hidden peer/monthly-analytics-2025">
+            <div class="hidden peer-checked/monthly-analytics-2025:block px-2 py-4 w-full">
+                <div class="grid grid-cols-2">
+                    <div class="col-span-1 h-64 border">2025 Month 1</div>
+                    <div class="col-span-1 h-64 border">2025 Month 2</div>
+                    <div class="col-span-1 h-64 border">2025 Month 3</div>
+                    <div class="col-span-1 h-64 border">2025 Month 4</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    
+</body>
+</html>

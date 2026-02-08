@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACI Group</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <style>
+    #analytics .grid {
+        min-height: 300px; /* Ensures all chart containers are the same height */
+    }
+    
+    canvas {
+        height: 250px !important;
+        width: 100% !important;
+    }
+    .checked-label {
+        background-color: #f0f0f0;
+        border-color: #4a90e2;
+        color: #062dba;
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body class="bg-gray-100 text-xs p-4 grid grid-cols-1">
+
+<div>
+    <h1 class="text-4xl"><b>ACI Group</b></h1><br>
+</div>
+<div class="grid grid-cols-6 gap-x-2 gap-y-6">
+    <div class="col-span-2 bg-white shadow-lg rounded-lg">
+        <!-- Tabs -->
+        <div class="flex items-center border-b rounded-lg bg-blue-700">
+            <label class="p-2 pr-4 font-bold text-white border-b-2 border-transparent">Info</label>
+            <label for="info-stats" class="cursor-pointer py-1 px-2 mr-1 text-white hover:text-blue-700 border border-white rounded-lg hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Stats</label>
+            <label for="info-general" class="cursor-pointer py-1 px-2 mr-1 text-white hover:text-blue-700 border border-white rounded-lg hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">General</label>
+        </div>
+        
+        <!-- Tab Content -->
+        <input type="radio" name="info" class="hidden peer/info-stats" id="info-stats" checked>
+        <div class="hidden peer-checked/info-stats:block px-2 py-4" id="info-stats-content">Content for stats</div>
+        
+        <input type="radio" name="info" class="hidden peer/info-general" id="info-general">
+        <div class="hidden peer-checked/info-general:block px-2 py-4" id="info-general-content">Content for general</div>
+    </div>
+    
+    <div class="col-span-4 bg-white shadow-lg rounded-lg">
+        <!-- Tabs -->
+        <div class="flex items-center border-b rounded-lg bg-blue-700">
+            <label class="p-2 pr-4 font-bold text-white border-b-2 border-transparent">Chart</label>
+            <label for="chart-growth" class="cursor-pointer py-1 px-2 mr-1 text-white hover:text-blue-700 border border-white rounded-lg hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Growth</label>
+            <label for="chart-balance" class="cursor-pointer py-1 px-2 mr-1 text-white hover:text-blue-700 border border-white rounded-lg hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Balance</label>
+            <label for="chart-profit" class="cursor-pointer py-1 px-2 mr-1 text-white hover:text-blue-700 border border-white rounded-lg hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Profit</label>
+            <label for="chart-drawdown" class="cursor-pointer py-1 px-2 mr-1 text-white hover:text-blue-700 border border-white rounded-lg hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Drawdown</label>
+            <label for="chart-deposit" class="cursor-pointer py-1 px-2 mr-1 text-white hover:text-blue-700 border border-white rounded-lg hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Deposit</label>
+        </div>
+
+        <!-- Tab Content -->
+        <input type="radio" name="chart" id="chart-growth" class="hidden peer/chart-growth" checked>
+        <div class="hidden peer-checked/chart-growth:block px-2 py-4">
+            <canvas id="chart-growth-content">Content for growth</canvas>
+        </div>
+        <input type="radio" name="chart" id="chart-balance" class="hidden peer/chart-balance">
+        <div class="hidden peer-checked/chart-balance:block px-2 py-4">
+            <canvas id="chart-balance-content">Content for balance</canvas>
+        </div>
+        <input type="radio" name="chart" id="chart-profit" class="hidden peer/chart-profit">
+        <div class="hidden peer-checked/chart-profit:block px-2 py-4">
+            <canvas id="chart-profit-content">Content for profit</canvas>
+        </div>
+        <input type="radio" name="chart" id="chart-drawdown" class="hidden peer/chart-drawdown">
+        <div class="hidden peer-checked/chart-drawdown:block px-2 py-4">
+            <canvas id="chart-drawdown-content">Content for drawdown</canvas>
+        </div>
+        <input type="radio" name="chart" id="chart-deposit" class="hidden peer/chart-deposit">
+        <div class="hidden peer-checked/chart-deposit:block px-2 py-4">
+            <canvas id="chart-deposit-content">Content for deposit</canvas>
+        </div>
+    </div>
+  
+    <div class="col-span-6 bg-white shadow-lg rounded-lg" id="analytics">
+        <!-- Tabs -->
+        <div class="flex items-center border-b rounded-lg bg-blue-700" id="analytics-tabs">
+            <label class="p-2 pr-4 font-bold text-white border-b-2 border-transparent">Monthly Analytics</label>
+        </div>
+        <!-- Tab Content -->
+        <div id="analytics-content"></div>
+    </div>
+</div>
+
+<script>
+    // Info Module
+    async function user_info() {
+        const info = JSON.parse(sessionStorage.getItem("user_info"));
+        if (!info) {
+            console.error('No data found for the info module.');
+            return;
+        }
+        // Populate the info stats tab with the data
+        const infoStatsContentHTML = `
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Gain:</h5>
+                </div>
+                <div class="text-left">
+                    <h5 class="text-green-500">${info[0].gain}</h5>
+                </div>
+            </div>
+            <div class="border-b flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Abs Gain:</h5>
+                </div>
+                <div class="text-left">
+                    <h5 class="text-green-500">+${info[0].abs_gain}</h5>
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Daily:</h5>
+                </div>
+                <div class="text-left">
+                    <h5>0.05% (Dummy)</h5>
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Monthly:</h5>
+                </div>
+                <div class="text-left">
+                    <h5>4.0% (Dummy)</h5>
+                </div>
+            </div>
+            <div class="border-b flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Drawdown:</h5>
+                </div>
+                <div class="text-left">
+                    <h5>15.52% (Dummy)</h5>
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Balance:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].balance}
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Equity:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].equity}
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Highest:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].highest_balance}
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Profit:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].net_profit}
+                </div>
+            </div>
+            <div class="border-b flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Intrest:</h5>
+                </div>
+                <div class="text-left">
+                    <h5>0</h5>
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Deposits:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].deposits}
+                </div>
+            </div>
+            <div class="border-b flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Withdrawals:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].withdrawals}
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Updated:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].updated_at}
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Tracking:</h5>
+                </div>
+                <div class="text-left">
+                    <h5>0</h5>
+                </div>
+            </div>
+        `;
+        // Populate the info general tab with the data
+        const infoGeneralContentHTML = `
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>LoginID:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].login} <!-- Explicitly embed login ID -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Currency:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].currency} <!-- Explicitly embed currency -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Credit:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].credit} <!-- Explicitly embed credit -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Leverage:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].leverage} <!-- Explicitly embed leverage -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Liabilities:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].liabilities} <!-- Explicitly embed liabilities -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Order Limit:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].limit_orders} <!-- Explicitly embed limit_orders -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Margin:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].margin} <!-- Explicitly embed deposit -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Margin Free:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].margin_free} <!-- Explicitly embed deposit_free -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Margin Mode:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].margin_mode} <!-- Explicitly embed deposit_mode -->
+                </div>
+            </div>
+            <div class="border-b flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Margin so call:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].margin_so_call} <!-- Explicitly embed deposit_so_call -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Margin so so:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].margin_so_so} <!-- Explicitly embed deposit_so_so -->
+                </div>
+            </div>
+            <div class="border-b flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Trade Allowed:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].trade_allowed} <!-- Explicitly embed trade_allowed -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Trade expert:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].trade_expert} <!-- Explicitly embed trade_expert -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Trade Mode:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].trade_mode} <!-- Explicitly embed trade_mode -->
+                </div>
+            </div>
+        `;    
+        document.getElementById('info-stats-content').innerHTML = infoStatsContentHTML;
+        document.getElementById('info-general-content').innerHTML = infoGeneralContentHTML;
+    }
+
+    // Chart Module
+    async function user_chart() {
+        // Fetch Data
+        const chart_data = JSON.parse(sessionStorage.getItem("user_chart"));
+
+        // Function to create the chart
+        function createChart(data, type, divID, title, xLabel, yLabel) {
+            // Extract dates and amounts
+            let dates = data.map(item => item[0]); // Dates as strings
+            let amounts = data.map(item => item[1]);
+
+            // Chart configuration
+            let myChart = new Chart(divID, {
+                type: type,
+                data: {
+                    labels: dates, // Use date strings as labels
+                    datasets: [{
+                        label: yLabel,
+                        data: amounts,
+                        borderColor: 'rgba(3, 48, 161, 1)',
+                        backgroundColor: 'rgba(3, 48, 161, 0.2)',
+                        borderWidth: 1,
+                        pointRadius: 0,
+                        fill: true,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'category', // Treat x-axis as categorical data
+                            title: {
+                                display: true,
+                                text: xLabel
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: yLabel
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Get the context for each canvas
+        const chart_growth = document.getElementById('chart-growth-content').getContext('2d');
+        const chart_balance = document.getElementById('chart-balance-content').getContext('2d');
+        const chart_profit = document.getElementById('chart-profit-content').getContext('2d');
+        const chart_drawdown = document.getElementById('chart-drawdown-content').getContext('2d');
+        const chart_deposit = document.getElementById('chart-deposit-content').getContext('2d');
+
+        // Clear the old content from each canvas
+        chart_growth.clearRect(0, 0, chart_growth.canvas.width, chart_growth.canvas.height);
+        chart_balance.clearRect(0, 0, chart_balance.canvas.width, chart_balance.canvas.height);
+        chart_profit.clearRect(0, 0, chart_profit.canvas.width, chart_profit.canvas.height);
+        chart_drawdown.clearRect(0, 0, chart_drawdown.canvas.width, chart_drawdown.canvas.height);
+        chart_deposit.clearRect(0, 0, chart_deposit.canvas.width, chart_deposit.canvas.height);
+
+        // Chart Growth
+        if (chart_data.growth) {
+            createChart(chart_data.growth, 'line', chart_growth, 'Growth', 'Date', 'Growth');
+        }
+        
+        // Chart Balance
+        if (chart_data.balance) {
+            createChart(chart_data.balance, 'line', chart_balance, 'Balance', 'Date', 'Balance');
+        }
+        
+        // Chart Profit
+        if (chart_data.profit) {
+            createChart(chart_data.profit, 'line', chart_profit, 'Profit', 'Date', 'Profit');
+        }
+
+        // Chart Drawdown
+        if (chart_data.drawdown) {
+            createChart(chart_data.drawdown, 'bar', chart_drawdown, 'Drawdown', 'Date', 'Drawdown');
+        }
+
+        // Chart deposit
+        if (chart_data.deposit) {
+            createChart(chart_data.deposit, 'bar', chart_deposit, 'Deposit', 'Date', 'Deposit');
+        }
+    }
+        
+    // Analytics Module
+    async function user_analytics() {
+        const analytics = JSON.parse(sessionStorage.getItem('user_analytics'));
+        if (!analytics || !analytics.years || !analytics.year_months) {
+            console.error('Invalid or missing analytics data.');
+            return;
+        }
+
+        // Function to generate a chart for a specific year
+        function generateAnalyticsChart(year, monthsData) {
+            const ctx = document.getElementById(`chart-${year}`).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(monthsData),
+                    datasets: [{
+                        label: `Monthly Data for ${year}`,
+                        data: Object.values(monthsData),
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true }
+                    },
+                    plugins: {
+                        tooltip: { enabled: true },
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'top',
+                            formatter: (value) => value.toFixed(2),
+                            color: '#000',
+                            font: { weight: 'bold' }
+                        }
+                    }
+                },
+                plugins: [ChartDataLabels]
+            });
+        }
+
+        const analyticsTabs = document.getElementById('analytics-tabs');
+        const analyticsContent = document.getElementById('analytics-content');
+
+        // Clear existing content
+        analyticsTabs.innerHTML = '<label class="p-2 pr-4 font-bold text-white border-b-2 border-transparent">Monthly Analytics</label>';
+        analyticsContent.innerHTML = '';
+
+        // Find the latest year
+        const latestYear = Math.max(...analytics.years);
+
+        // Add tabs and content for each year
+        analytics.years.forEach((year) => {
+            // Add tab
+            analyticsTabs.innerHTML += `
+                <label for="analytics-${year}" class="cursor-pointer py-1 px-2 mr-1 text-white hover:text-blue-700 border border-white rounded-lg hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">
+                    ${year}
+                </label>
+            `;
+
+            // Add content
+            analyticsContent.innerHTML += `
+                <input type="radio" name="analytics" id="analytics-${year}" class="hidden peer/analytics-${year}">
+                <div class="hidden peer-checked/analytics-${year}:block px-2 py-4 w-full">
+                    <canvas id="chart-${year}" style="height: 250px;"></canvas>
+                </div>
+            `;
+            // After adding all elements to the DOM, set the latest year as checked
+            const latestYearInput = document.querySelector(`#analytics-${latestYear}`);
+            if (latestYearInput) {
+                latestYearInput.checked = true;    
+            }
+        });
+
+        // Generate charts after the DOM is updated
+
+        analytics.years.forEach((year) => {
+            const monthsData = analytics.year_months.find(item => item.year === year)?.months || {};
+            generateAnalyticsChart(year, monthsData);
+        });
+
+    }
+
+    // Modules
+    const modules = {
+        user_info: user_info, // Map 'info' to the `info` function
+        user_chart: user_chart, // Map 'chart' to the `chart` function
+        user_analytics: user_analytics, // Map 'analytics' to the `analytics` function
+    };
+
+    // Function to Fetch data from API and save data in session storage
+    async function callApi(endpoint) {
+        if (sessionStorage.getItem(endpoint)) {
+            console.log(`${endpoint} Data already exists in sessionStorage. Skipping API call.`);
+            return;
+        }
+        try {
+            const response = await fetch(`http://localhost:4090/${endpoint}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify({ username: '1111111' })
+            });
+            // Check if the response is OK (status code 200-299)
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const apiData = await response.json();
+            if (apiData.success) {
+                sessionStorage.setItem(endpoint, JSON.stringify(apiData.data));
+                console.log(`Data for ${endpoint} saved to sessionStorage.`);
+            } else {
+                alert('Failed: ' + apiData.message);
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+    
+    // Function to call API Endpoints for each module and load its content
+    async function fetchAndLoadData() {
+        for (const module of Object.keys(modules)) {
+            await callApi(module); // Wait for the API call to complete
+            if (modules[module] && typeof modules[module] === 'function') {
+                modules[module](); // Call the module-specific function
+            } else {
+                console.warn(`Function for module ${module} does not exist.`);
+            }
+        }
+    }
+
+    // Function to check which radio buttons are checked and format their labels
+    function checkRadioButtons() {
+        // Get all radio buttons
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        
+        // Iterate through each radio button
+        radioButtons.forEach(radio => {
+            // Get the associated label using the 'for' attribute
+            const label = document.querySelector(`label[for="${radio.id}"]`);
+            
+            // If the radio button is checked, add the 'checked-label' class to the label
+            if (radio.checked) {
+                label.classList.add('checked-label');
+                label.classList.remove('text-white');
+            } else {
+                label.classList.remove('checked-label');
+                label.classList.add('text-white');
+            }
+        });
+    }
+    
+    // Load All Required on Page Startup
+    document.addEventListener('DOMContentLoaded', fetchAndLoadData);
+    // Initial check when the page loads
+    checkRadioButtons();
+
+    // Add event listeners to radio buttons to update the labels when changed
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', checkRadioButtons);
+    });
+</script> 
+</body>
+</html>

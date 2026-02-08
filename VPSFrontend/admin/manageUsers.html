@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mx-auto my-8">
+        <h1 class="text-3xl font-bold mb-4">Current Users</h1>
+        <div class="overflow-x-auto mb-4">
+            <button id="add-user-btn" class="bg-green-500 text-white py-2 px-4 rounded" onclick="openModal()">Add New User</button>
+        </div>        
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-300">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2 border">Username</th>
+                        <th class="px-4 py-2 border">Password</th>
+                        <th class="px-4 py-2 border">Server</th>
+                        <th class="px-4 py-2 border">Role</th>
+                        <th class="px-4 py-2 border">Is Active</th>
+                        <th class="px-4 py-2 border">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="user-table-body">
+                    <!-- User rows will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add/Edit User Modal -->
+    <div id="user-modal" class="fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center hidden">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+            <h2 class="text-2xl font-bold mb-4" id="modal-title">Add New User</h2>
+            <form id="user-form">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Password" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="server">Server</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="server" type="text" placeholder="server" required>
+                </div>
+                <div class="mb-4">
+                    <label for="role" class="block text-gray-700">Role</label>
+                    <select id="role" class="w-full py-2 px-3 border rounded" required>
+                        <option value="client">Client</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="is_active" class="block text-gray-700">Is Active</label>
+                    <select id="is_active" class="w-full py-2 px-3 border rounded" required>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                </div>
+                <div class="flex items-center justify-between">
+                    <button type="button" class="bg-gray-500 text-white py-2 px-4 rounded" onclick="closeModal()">Cancel</button>
+                    <button type="submit" id="save-user-btn" class="bg-blue-500 text-white py-2 px-4 rounded">Save User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const token = sessionStorage.getItem('token');
+        const loginedUserRole = sessionStorage.getItem('role');
+        let currentUsername = null;  // Store the username being edited
+
+        // Function to fetch users and populate the table
+        async function fetchUsers() {
+            const response = await fetch('http://Your-VPS-Address:4090/current_users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token,
+                },
+                body: JSON.stringify({})
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                const users = result.data;
+                const tableBody = document.getElementById('user-table-body');
+                tableBody.innerHTML = ''; // Clear existing rows
+
+                users.forEach(user => {
+                    const row = document.createElement('tr');
+
+                    row.innerHTML = `
+                        <td class="px-4 py-2 border">${user.username}</td>
+                        <td class="px-4 py-2 border">${user.password}</td>
+                        <td class="px-4 py-2 border">${user.server}</td>
+                        <td class="px-4 py-2 border">${user.role}</td>
+                        <td class="px-4 py-2 border">${user.is_active}</td>
+                        <td class="px-4 py-2 border">
+                            <button class="bg-blue-500 text-white py-1 px-4 rounded" onclick="editUser('${user.username}')">Edit</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } else {
+                alert('Failed to load user data.');
+            }
+        }
+
+        // Open modal for adding a new user
+        function openModal() {
+            document.getElementById('user-modal').classList.remove('hidden');
+            document.getElementById('modal-title').innerText = 'Add New User';
+            currentUsername = null;  // Clear the current username for adding a new user
+            document.getElementById('user-form').reset();
+        }
+
+        // Open modal to edit a user
+        function editUser(username) {
+            currentUsername = username;  // Set the current username to edit
+            document.getElementById('user-modal').classList.remove('hidden');
+            document.getElementById('modal-title').innerText = 'Edit User';
+
+            // Populate the form with the existing user data
+            const userRow = Array.from(document.querySelectorAll('#user-table-body tr')).find(row => row.cells[0].innerText === username);
+            if (userRow) {
+                document.getElementById('username').value = userRow.cells[0].innerText;
+                document.getElementById('password').value = userRow.cells[1].innerText;
+                document.getElementById('server').value = userRow.cells[2].innerText;
+                document.getElementById('role').value = userRow.cells[3].innerText;
+                document.getElementById('is_active').value = userRow.cells[4].innerText;
+            }
+        }
+
+        // Close the modal
+        function closeModal() {
+            document.getElementById('user-modal').classList.add('hidden');
+        }
+
+        // Function to add/update user
+        async function saveUser(event) {
+            event.preventDefault();
+
+            const userData = {
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value,
+                server: document.getElementById('server').value,
+                role: document.getElementById('role').value,
+                is_active: document.getElementById('is_active').value,
+            };
+
+            // Check if username is present; if so, update the user, otherwise create a new one
+            const endpoint = currentUsername ? 'http://127.0.0.1:4090/update_user' : 'http://127.0.0.1:4090/add_user';
+            
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token,
+                },
+                body: JSON.stringify(userData)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                fetchUsers(); // Refresh user list
+                closeModal();
+            } else {
+                alert('Failed to save user.');
+            }
+        }
+
+        // Event listener for the form submission
+        document.getElementById('user-form').addEventListener('submit', saveUser);
+
+        // Fetch user data when the page loads
+        window.onload = fetchUsers;
+    </script>
+</body>
+</html>

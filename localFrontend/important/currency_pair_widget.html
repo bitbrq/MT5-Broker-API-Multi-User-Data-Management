@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Pair Widget</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .widget-container {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        select, button {
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .chart-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .chart-box {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            border: 1px solid #eee;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .loading {
+            display: none;
+            margin: 20px 0;
+            color: #666;
+        }
+        .error {
+            color: #f44336;
+            margin: 10px 0;
+        }
+        .data-info {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="widget-container">
+        <h2>Currency Pair Rates</h2>
+        <div class="controls">
+            <select id="currencyPair">
+                <option value="EURUSD">EUR/USD</option>
+                <option value="GBPUSD">GBP/USD</option>
+                <option value="USDJPY">USD/JPY</option>
+                <option value="USDCHF">USD/CHF</option>
+                <option value="EURJPY">EUR/JPY</option>
+                <option value="GBPJPY">GBP/JPY</option>
+            </select>
+            <button id="fetchData">Fetch Data</button>
+        </div>
+        <div id="loading" class="loading">Loading data...</div>
+        <div id="error" class="error"></div>
+        <div id="dataInfo" class="data-info"></div>
+        <div class="chart-container">
+            <div class="chart-box">
+                <canvas id="dailyChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <canvas id="minuteChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const currencyPairSelect = document.getElementById('currencyPair');
+            const fetchButton = document.getElementById('fetchData');
+            const loadingElement = document.getElementById('loading');
+            const errorElement = document.getElementById('error');
+            const dataInfoElement = document.getElementById('dataInfo');
+            const dailyChartCtx = document.getElementById('dailyChart').getContext('2d');
+            const minuteChartCtx = document.getElementById('minuteChart').getContext('2d');
+            
+            // Chart instances
+            let dailyChart = null;
+            let minuteChart = null;
+            
+            // Event listener for fetch button
+            fetchButton.addEventListener('click', fetchData);
+            
+            // Initial load
+            fetchData();
+            
+            async function fetchData() {
+                const symbol = currencyPairSelect.value;
+                errorElement.textContent = '';
+                dataInfoElement.textContent = '';
+                loadingElement.style.display = 'block';
+                
+                try {
+                    const response = await fetch('http://Your-VPS-Address:4090/currency_pair_widget', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ symbol })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (!data.success) {
+                        throw new Error(data.message || 'Failed to fetch data');
+                    }
+                    
+                    // Display data information
+                    displayDataInfo(data.data, symbol);
+                    
+                    // Process and display data
+                    displayCharts(data.data, symbol);
+                } catch (error) {
+                    errorElement.textContent = `Error: ${error.message}`;
+                    console.error('Error fetching data:', error);
+                } finally {
+                    loadingElement.style.display = 'none';
+                }
+            }
+            
+            function displayDataInfo(data, symbol) {
+                const d1Count = data.d1.length;
+                const m1Count = data.m1.length;
+                const firstD1Date = data.d1.length > 0 ? data.d1[0][0] : 'N/A';
+                const lastD1Date = data.d1.length > 0 ? data.d1[data.d1.length-1][0] : 'N/A';
+                const firstM1Date = data.m1.length > 0 ? data.m1[0][0] : 'N/A';
+                const lastM1Date = data.m1.length > 0 ? data.m1[data.m1.length-1][0] : 'N/A';
+                
+                dataInfoElement.innerHTML = `
+                    <strong>${symbol} Data Information:</strong><br>
+                    Daily (D1) Records: ${d1Count} (From ${lastD1Date} to ${firstD1Date})<br>
+                    Minute (M1) Records: ${m1Count} (From ${lastM1Date} to ${firstM1Date})
+                `;
+            }
+            
+            function displayCharts(data, symbol) {
+                // Process D1 data (daily)
+                const d1Data = data.d1;
+                const d1Labels = d1Data.map(item => item[0]); // Time is at index 0
+                const d1Open = d1Data.map(item => item[1]);   // Open at index 1
+                const d1High = d1Data.map(item => item[2]);  // High at index 2
+                const d1Low = d1Data.map(item => item[3]);   // Low at index 3
+                const d1Close = d1Data.map(item => item[4]);  // Close at index 4
+                
+                // Process M1 data (minute)
+                const m1Data = data.m1;
+                const m1Labels = m1Data.map(item => item[0]); // Time is at index 0
+                const m1Open = m1Data.map(item => item[1]);   // Open at index 1
+                const m1High = m1Data.map(item => item[2]);   // High at index 2
+                const m1Low = m1Data.map(item => item[3]);    // Low at index 3
+                const m1Close = m1Data.map(item => item[4]);  // Close at index 4
+                
+                // Destroy previous charts if they exist
+                if (dailyChart) dailyChart.destroy();
+                if (minuteChart) minuteChart.destroy();
+                
+                // Create daily chart
+                dailyChart = new Chart(dailyChartCtx, {
+                    type: 'line',
+                    data: {
+                        labels: d1Labels,
+                        datasets: [
+                            {
+                                label: 'Open',
+                                data: d1Open,
+                                borderColor: 'rgb(75, 192, 192)',
+                                backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                                tension: 0.1,
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'High',
+                                data: d1High,
+                                borderColor: 'rgb(54, 162, 235)',
+                                backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                                tension: 0.1,
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Low',
+                                data: d1Low,
+                                borderColor: 'rgb(255, 99, 132)',
+                                backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                                tension: 0.1,
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Close',
+                                data: d1Close,
+                                borderColor: 'rgb(153, 102, 255)',
+                                backgroundColor: 'rgba(153, 102, 255, 0.1)',
+                                tension: 0.1,
+                                borderWidth: 2
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: `${symbol} Daily Rates (D1) - OHLC Values`
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Date'
+                                },
+                                ticks: {
+                                    maxRotation: 45,
+                                    minRotation: 45
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Price'
+                                }
+                            }
+                        }
+                    }
+                });
+                // Create Minute chart
+                minuteChart = new Chart(minuteChartCtx, {
+                    type: 'line',
+                    data: {
+                        labels: m1Labels,
+                        datasets: [
+                            {
+                                label: 'Open',
+                                data: m1Open,
+                                borderColor: 'rgb(75, 192, 192)',
+                                backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                                tension: 0.1,
+                                borderWidth: 1,
+                                pointRadius: 0
+                            },
+                            {
+                                label: 'High',
+                                data: m1High,
+                                borderColor: 'rgb(54, 162, 235)',
+                                backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                                tension: 0.1,
+                                borderWidth: 1,
+                                pointRadius: 0
+                            },
+                            {
+                                label: 'Low',
+                                data: m1Low,
+                                borderColor: 'rgb(255, 99, 132)',
+                                backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                                tension: 0.1,
+                                borderWidth: 1,
+                                pointRadius: 0
+                            },
+                            {
+                                label: 'Close',
+                                data: m1Close,
+                                borderColor: 'rgb(153, 102, 255)',
+                                backgroundColor: 'rgba(153, 102, 255, 0.1)',
+                                tension: 0.1,
+                                borderWidth: 1,
+                                pointRadius: 0
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: `${symbol} Daily Rates (D1) - OHLC Values`
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Date'
+                                },
+                                ticks: {
+                                    maxRotation: 45,
+                                    minRotation: 45
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Price'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

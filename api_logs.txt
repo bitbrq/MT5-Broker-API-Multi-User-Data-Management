@@ -1,0 +1,756 @@
+2025-03-25 00:39:52,622 - Initializing Script ......
+2025-03-25 00:39:52,622 - Logging in API ...........
+2025-03-25 00:39:53,577 - API Login Successful. Starting script to fetch data
+2025-03-25 00:39:54,220 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 00:39:56,660 - Updating data for Currency Pair: EURUSD
+2025-03-25 00:39:58,532 - Updating data for Currency Pair: GBPUSD
+2025-03-25 00:40:00,278 - Updating data for Currency Pair: USDJPY
+2025-03-25 00:40:02,087 - Updating data for Currency Pair: USDCHF
+2025-03-25 00:40:03,452 - Updating data for Currency Pair: EURJPY
+2025-03-25 00:40:04,728 - Updating data for Currency Pair: GBPJPY
+2025-03-25 00:40:05,478 - Unexpected error in script: 'NoneType' object is not iterable
+2025-03-25 00:42:27,478 - Initializing Script ......
+2025-03-25 00:42:27,478 - Logging in API ...........
+2025-03-25 00:42:28,370 - API Login Successful. Starting script to fetch data
+2025-03-25 00:42:29,009 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 00:42:30,297 - Updating data for Currency Pair: EURUSD
+2025-03-25 00:42:30,926 - Updating data for Currency Pair: GBPUSD
+2025-03-25 00:42:31,567 - Updating data for Currency Pair: USDJPY
+2025-03-25 00:42:32,199 - Updating data for Currency Pair: USDCHF
+2025-03-25 00:42:32,913 - Updating data for Currency Pair: EURJPY
+2025-03-25 00:42:33,645 - Updating data for Currency Pair: GBPJPY
+2025-03-25 00:42:34,393 - Updating data for Account ID: 555555555
+2025-03-25 00:42:40,561 - 555555555 History Orders Data Updated on 2025-03-25 00:42:37.433998
+2025-03-25 00:42:44,067 - 555555555 History Deals Data Updated on 2025-03-25 00:42:41.173508
+2025-03-25 00:42:44,714 - 555555555 Account Details Updated on 2025-03-25 00:42:44.712921
+2025-03-25 00:42:47,326 - 555555555 Gain Updated on 2025-03-25 00:42:47.325853
+2025-03-25 00:42:47,327 - Updating data for Account ID: 1111111
+2025-03-25 00:42:50,252 - 1111111 History Orders Data Updated on 2025-03-25 00:42:50.167218
+2025-03-25 00:42:50,921 - 1111111 History Deals Data Updated on 2025-03-25 00:42:50.853532
+2025-03-25 00:42:51,532 - 1111111 Account Details Updated on 2025-03-25 00:42:51.528218
+2025-03-25 00:42:52,241 - 1111111 Gain Updated on 2025-03-25 00:42:52.239795
+2025-03-25 00:42:52,242 - Updating data for Account ID: 88888888
+2025-03-25 00:42:55,237 - 88888888 History Orders Data Updated on 2025-03-25 00:42:55.235263
+2025-03-25 00:42:55,855 - 88888888 History Deals Data Updated on 2025-03-25 00:42:55.849461
+2025-03-25 00:42:56,503 - 88888888 Account Details Updated on 2025-03-25 00:42:56.499723
+2025-03-25 00:42:57,143 - 88888888 Gain Updated on 2025-03-25 00:42:57.139900
+2025-03-25 00:42:57,145 - Saving database changes...
+2025-03-25 00:43:02,201 - Database save completed.
+2025-03-25 00:43:02,202 - Sleeping for 4 Hours
+2025-03-25 00:50:04,372 - Initializing Script ......
+2025-03-25 00:50:04,372 - Logging in API ...........
+2025-03-25 00:50:05,284 - API Login Successful. Starting script to fetch data
+2025-03-25 00:50:05,947 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 00:50:07,278 - Updating data for Currency Pair: EURUSD
+2025-03-25 00:50:07,951 - Updating data for Currency Pair: GBPUSD
+2025-03-25 00:50:08,595 - Updating data for Currency Pair: USDJPY
+2025-03-25 00:50:09,244 - Updating data for Currency Pair: USDCHF
+2025-03-25 00:50:09,929 - Updating data for Currency Pair: EURJPY
+2025-03-25 00:50:10,623 - Updating data for Currency Pair: GBPJPY
+2025-03-25 00:50:11,393 - Updating data for Account ID: 555555555
+2025-03-25 00:50:14,582 - 555555555 History Orders Data Updated on 2025-03-25 00:50:14.541157
+2025-03-25 00:50:15,214 - 555555555 History Deals Data Updated on 2025-03-25 00:50:15.210207
+2025-03-25 00:50:15,933 - 555555555 Account Details Updated on 2025-03-25 00:50:15.932420
+2025-03-25 00:50:18,645 - 555555555 Gain Updated on 2025-03-25 00:50:18.643534
+2025-03-25 00:50:18,646 - Updating data for Account ID: 1111111
+2025-03-25 00:50:21,622 - 1111111 History Orders Data Updated on 2025-03-25 00:50:21.613058
+2025-03-25 00:50:22,263 - 1111111 History Deals Data Updated on 2025-03-25 00:50:22.261957
+2025-03-25 00:50:22,886 - 1111111 Account Details Updated on 2025-03-25 00:50:22.881604
+2025-03-25 00:50:23,616 - 1111111 Gain Updated on 2025-03-25 00:50:23.614626
+2025-03-25 00:50:23,616 - Updating data for Account ID: 88888888
+2025-03-25 00:50:26,254 - 88888888 History Orders Data Updated on 2025-03-25 00:50:26.253491
+2025-03-25 00:50:26,895 - 88888888 History Deals Data Updated on 2025-03-25 00:50:26.893331
+2025-03-25 00:50:27,529 - 88888888 Account Details Updated on 2025-03-25 00:50:27.524983
+2025-03-25 00:50:28,168 - 88888888 Gain Updated on 2025-03-25 00:50:28.165304
+2025-03-25 00:50:28,169 - Saving database changes...
+2025-03-25 00:56:46,476 - Initializing Script ......
+2025-03-25 00:56:46,478 - Logging in API ...........
+2025-03-25 00:56:47,377 - API Login Successful. Starting script to fetch data
+2025-03-25 00:56:48,030 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 00:56:49,353 - Updating data for Currency Pair: EURUSD
+2025-03-25 00:56:50,026 - Updating data for Currency Pair: GBPUSD
+2025-03-25 00:56:50,665 - Updating data for Currency Pair: USDJPY
+2025-03-25 00:56:51,331 - Updating data for Currency Pair: USDCHF
+2025-03-25 00:56:52,004 - Updating data for Currency Pair: EURJPY
+2025-03-25 00:56:52,674 - Updating data for Currency Pair: GBPJPY
+2025-03-25 00:56:53,450 - Updating data for Account ID: 555555555
+2025-03-25 00:56:56,248 - 555555555 History Orders Data Updated on 2025-03-25 00:56:56.182618
+2025-03-25 00:56:56,910 - 555555555 History Deals Data Updated on 2025-03-25 00:56:56.902715
+2025-03-25 00:56:57,574 - 555555555 Account Details Updated on 2025-03-25 00:56:57.573369
+2025-03-25 00:57:00,196 - 555555555 Gain Updated on 2025-03-25 00:57:00.194884
+2025-03-25 00:57:00,196 - Updating data for Account ID: 1111111
+2025-03-25 00:57:03,212 - 1111111 History Orders Data Updated on 2025-03-25 00:57:03.201958
+2025-03-25 00:57:03,851 - 1111111 History Deals Data Updated on 2025-03-25 00:57:03.846823
+2025-03-25 00:57:04,497 - 1111111 Account Details Updated on 2025-03-25 00:57:04.492582
+2025-03-25 00:57:05,231 - 1111111 Gain Updated on 2025-03-25 00:57:05.229034
+2025-03-25 00:57:05,231 - Updating data for Account ID: 88888888
+2025-03-25 00:57:07,932 - 88888888 History Orders Data Updated on 2025-03-25 00:57:07.931299
+2025-03-25 00:57:08,543 - 88888888 History Deals Data Updated on 2025-03-25 00:57:08.539196
+2025-03-25 00:57:09,175 - 88888888 Account Details Updated on 2025-03-25 00:57:09.171430
+2025-03-25 00:57:09,813 - 88888888 Gain Updated on 2025-03-25 00:57:09.810937
+2025-03-25 00:57:09,814 - Saving database changes...
+2025-03-25 00:57:14,831 - Database save completed.
+2025-03-25 00:57:14,831 - Sleeping for 4 Hours
+2025-03-25 01:00:57,387 - Initializing Script ......
+2025-03-25 01:00:57,403 - Logging in API ...........
+2025-03-25 01:00:58,318 - API Login Successful. Starting script to fetch data
+2025-03-25 01:00:58,946 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 01:01:00,257 - Updating data for Currency Pair: EURUSD
+2025-03-25 01:01:00,925 - Updating data for Currency Pair: GBPUSD
+2025-03-25 01:01:01,586 - Updating data for Currency Pair: USDJPY
+2025-03-25 01:01:02,330 - Updating data for Currency Pair: USDCHF
+2025-03-25 01:01:02,984 - Updating data for Currency Pair: EURJPY
+2025-03-25 01:01:03,618 - Updating data for Currency Pair: GBPJPY
+2025-03-25 01:01:04,342 - Updating data for Account ID: 555555555
+2025-03-25 01:01:07,524 - 555555555 History Orders Data Updated on 2025-03-25 01:01:07.474505
+2025-03-25 01:01:08,190 - 555555555 History Deals Data Updated on 2025-03-25 01:01:08.190753
+2025-03-25 01:01:08,840 - 555555555 Account Details Updated on 2025-03-25 01:01:08.840423
+2025-03-25 01:01:11,623 - 555555555 Gain Updated on 2025-03-25 01:01:11.623558
+2025-03-25 01:01:11,623 - Updating data for Account ID: 1111111
+2025-03-25 01:01:14,992 - 1111111 History Orders Data Updated on 2025-03-25 01:01:14.992740
+2025-03-25 01:01:15,607 - 1111111 History Deals Data Updated on 2025-03-25 01:01:15.607999
+2025-03-25 01:01:16,251 - 1111111 Account Details Updated on 2025-03-25 01:01:16.251784
+2025-03-25 01:01:16,946 - 1111111 Gain Updated on 2025-03-25 01:01:16.944140
+2025-03-25 01:01:16,946 - Updating data for Account ID: 88888888
+2025-03-25 01:01:19,801 - 88888888 History Orders Data Updated on 2025-03-25 01:01:19.801618
+2025-03-25 01:01:20,406 - 88888888 History Deals Data Updated on 2025-03-25 01:01:20.406890
+2025-03-25 01:01:21,071 - 88888888 Account Details Updated on 2025-03-25 01:01:21.071985
+2025-03-25 01:01:21,688 - 88888888 Gain Updated on 2025-03-25 01:01:21.684368
+2025-03-25 01:01:21,688 - Saving database changes...
+2025-03-25 01:01:26,367 - Database save completed.
+2025-03-25 01:01:26,367 - Sleeping for 4 Hours
+2025-03-25 21:39:23,482 - Initializing Script ......
+2025-03-25 21:39:23,482 - Logging in API ...........
+2025-03-25 21:39:24,500 - API Login Successful. Starting script to fetch data
+2025-03-25 21:39:25,158 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 21:39:26,495 - Updating data for Currency Pair: EURUSD
+2025-03-25 21:39:27,210 - Updating data for Currency Pair: GBPUSD
+2025-03-25 21:39:27,975 - Updating data for Currency Pair: USDJPY
+2025-03-25 21:39:28,675 - Updating data for Currency Pair: USDCHF
+2025-03-25 21:39:29,477 - Updating data for Currency Pair: EURJPY
+2025-03-25 21:39:30,276 - Updating data for Currency Pair: GBPJPY
+2025-03-25 21:39:31,015 - Updating data for Account ID: 555555555
+2025-03-25 21:39:34,209 - 555555555 History Orders Data Updated on 2025-03-25 21:39:34.146352
+2025-03-25 21:39:34,902 - 555555555 History Deals Data Updated on 2025-03-25 21:39:34.823505
+2025-03-25 21:39:35,527 - 555555555 Account Details Updated on 2025-03-25 21:39:35.516594
+2025-03-25 21:39:38,059 - 555555555 Gain Updated on 2025-03-25 21:39:38.059997
+2025-03-25 21:39:38,059 - Updating data for Account ID: 1111111
+2025-03-25 21:39:41,217 - 1111111 History Orders Data Updated on 2025-03-25 21:39:41.217303
+2025-03-25 21:39:41,900 - 1111111 History Deals Data Updated on 2025-03-25 21:39:41.900082
+2025-03-25 21:39:42,558 - 1111111 Account Details Updated on 2025-03-25 21:39:42.556454
+2025-03-25 21:39:43,268 - 1111111 Gain Updated on 2025-03-25 21:39:43.266929
+2025-03-25 21:39:43,269 - Updating data for Account ID: 88888888
+2025-03-25 21:39:46,706 - 88888888 History Orders Data Updated on 2025-03-25 21:39:46.704908
+2025-03-25 21:39:47,349 - 88888888 History Deals Data Updated on 2025-03-25 21:39:47.347099
+2025-03-25 21:39:47,972 - 88888888 Account Details Updated on 2025-03-25 21:39:47.971543
+2025-03-25 21:39:48,615 - 88888888 Gain Updated on 2025-03-25 21:39:48.613312
+2025-03-25 21:39:48,615 - Saving database changes...
+2025-03-25 21:39:53,263 - Database save completed.
+2025-03-25 21:39:53,264 - Sleeping for 4 Hours
+2025-03-25 21:41:19,307 - Initializing Script ......
+2025-03-25 21:41:19,307 - Logging in API ...........
+2025-03-25 21:41:20,190 - API Login Successful. Starting script to fetch data
+2025-03-25 21:41:20,826 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 21:41:22,122 - Updating data for Currency Pair: EURUSD
+2025-03-25 21:41:22,755 - Updating data for Currency Pair: GBPUSD
+2025-03-25 21:41:23,385 - Updating data for Currency Pair: USDJPY
+2025-03-25 21:41:24,060 - Updating data for Currency Pair: USDCHF
+2025-03-25 21:41:24,683 - Updating data for Currency Pair: EURJPY
+2025-03-25 21:41:25,349 - Updating data for Currency Pair: GBPJPY
+2025-03-25 21:41:25,999 - Updating data for Account ID: 555555555
+2025-03-25 21:41:28,880 - 555555555 History Orders Data Updated on 2025-03-25 21:41:28.816412
+2025-03-25 21:41:29,502 - 555555555 History Deals Data Updated on 2025-03-25 21:41:29.499108
+2025-03-25 21:41:30,181 - 555555555 Account Details Updated on 2025-03-25 21:41:30.181224
+2025-03-25 21:41:30,952 - Updating data for Account ID: 1111111
+2025-03-25 21:41:33,939 - 1111111 History Orders Data Updated on 2025-03-25 21:41:33.934432
+2025-03-25 21:41:34,545 - 1111111 History Deals Data Updated on 2025-03-25 21:41:34.545998
+2025-03-25 21:41:35,187 - 1111111 Account Details Updated on 2025-03-25 21:41:35.187448
+2025-03-25 21:41:35,828 - Updating data for Account ID: 88888888
+2025-03-25 21:41:38,510 - 88888888 History Orders Data Updated on 2025-03-25 21:41:38.510041
+2025-03-25 21:41:39,136 - 88888888 History Deals Data Updated on 2025-03-25 21:41:39.131303
+2025-03-25 21:41:39,769 - 88888888 Account Details Updated on 2025-03-25 21:41:39.760036
+2025-03-25 21:41:40,378 - Saving database changes...
+2025-03-25 21:41:44,432 - Database save completed.
+2025-03-25 21:41:44,448 - Sleeping for 4 Hours
+2025-03-25 21:44:03,625 - Initializing Script ......
+2025-03-25 21:44:03,625 - Logging in API ...........
+2025-03-25 21:44:04,511 - API Login Successful. Starting script to fetch data
+2025-03-25 21:44:05,155 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 21:44:06,452 - Updating data for Currency Pair: EURUSD
+2025-03-25 21:44:07,104 - Updating data for Currency Pair: GBPUSD
+2025-03-25 21:44:07,754 - Updating data for Currency Pair: USDJPY
+2025-03-25 21:44:08,430 - Updating data for Currency Pair: USDCHF
+2025-03-25 21:44:09,087 - Updating data for Currency Pair: EURJPY
+2025-03-25 21:50:14,444 - Initializing Script ......
+2025-03-25 21:50:14,444 - Logging in API ...........
+2025-03-25 21:50:15,327 - API Login Successful. Starting script to fetch data
+2025-03-25 21:50:15,988 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 21:50:52,258 - Initializing Script ......
+2025-03-25 21:50:52,258 - Logging in API ...........
+2025-03-25 21:50:53,126 - API Login Successful. Starting script to fetch data
+2025-03-25 21:51:58,657 - Initializing Script ......
+2025-03-25 21:51:58,657 - Logging in API ...........
+2025-03-25 21:51:59,605 - API Login Successful. Starting script to fetch data
+2025-03-25 21:52:00,236 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 21:52:01,512 - Updating data for Currency Pair: EURUSD
+2025-03-25 21:52:02,197 - Updating data for Currency Pair: GBPUSD
+2025-03-25 21:52:02,854 - Updating data for Currency Pair: USDJPY
+2025-03-25 21:52:03,475 - Updating data for Currency Pair: USDCHF
+2025-03-25 21:52:04,187 - Updating data for Currency Pair: EURJPY
+2025-03-25 21:52:04,885 - Updating data for Currency Pair: GBPJPY
+2025-03-25 21:52:05,615 - Updating data for Account ID: 555555555
+2025-03-25 21:52:08,404 - 555555555 History Orders Data Updated on 2025-03-25 21:52:08.399706
+2025-03-25 21:52:09,034 - 555555555 History Deals Data Updated on 2025-03-25 21:52:09.018672
+2025-03-25 21:52:09,668 - 555555555 Account Details Updated on 2025-03-25 21:52:09.668500
+2025-03-25 21:52:12,188 - 555555555 Gain Updated on 2025-03-25 21:52:12.188356
+2025-03-25 21:52:12,188 - Updating data for Account ID: 1111111
+2025-03-25 21:52:14,904 - 1111111 History Orders Data Updated on 2025-03-25 21:52:14.888596
+2025-03-25 21:52:15,500 - 1111111 History Deals Data Updated on 2025-03-25 21:52:15.500782
+2025-03-25 21:52:16,129 - 1111111 Account Details Updated on 2025-03-25 21:52:16.129770
+2025-03-25 21:52:16,854 - 1111111 Gain Updated on 2025-03-25 21:52:16.844413
+2025-03-25 21:52:16,854 - Updating data for Account ID: 88888888
+2025-03-25 21:52:19,449 - 88888888 History Orders Data Updated on 2025-03-25 21:52:19.449741
+2025-03-25 21:52:20,065 - 88888888 History Deals Data Updated on 2025-03-25 21:52:20.065907
+2025-03-25 21:52:20,677 - 88888888 Account Details Updated on 2025-03-25 21:52:20.677733
+2025-03-25 21:52:21,313 - 88888888 Gain Updated on 2025-03-25 21:52:21.313585
+2025-03-25 21:52:21,313 - Saving database changes...
+2025-03-25 21:52:26,355 - Database save completed.
+2025-03-25 21:52:26,355 - Sleeping for 4 Hours
+2025-03-25 22:00:19,274 - Initializing Script ......
+2025-03-25 22:00:19,274 - Logging in API ...........
+2025-03-25 22:00:20,226 - API Login Successful. Starting script to fetch data
+2025-03-25 22:00:20,915 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 22:00:22,243 - Updating data for Currency Pair: EURUSD
+2025-03-25 22:00:22,891 - Updating data for Currency Pair: GBPUSD
+2025-03-25 22:00:23,552 - Updating data for Currency Pair: USDJPY
+2025-03-25 22:00:24,249 - Updating data for Currency Pair: USDCHF
+2025-03-25 22:00:24,928 - Updating data for Currency Pair: EURJPY
+2025-03-25 22:00:25,607 - Updating data for Currency Pair: GBPJPY
+2025-03-25 22:00:26,353 - Updating data for Account ID: 555555555
+2025-03-25 22:00:29,640 - 555555555 History Orders Data Updated on 2025-03-25 22:00:29.640641
+2025-03-25 22:00:30,290 - 555555555 History Deals Data Updated on 2025-03-25 22:00:30.290026
+2025-03-25 22:00:30,968 - 555555555 Account Details Updated on 2025-03-25 22:00:30.968135
+2025-03-25 22:00:33,650 - 555555555 Gain Updated on 2025-03-25 22:00:33.645226
+2025-03-25 22:00:33,651 - Updating data for Account ID: 1111111
+2025-03-25 22:00:36,615 - 1111111 History Orders Data Updated on 2025-03-25 22:00:36.599563
+2025-03-25 22:00:37,253 - 1111111 History Deals Data Updated on 2025-03-25 22:00:37.253324
+2025-03-25 22:00:37,881 - 1111111 Account Details Updated on 2025-03-25 22:00:37.881784
+2025-03-25 22:00:38,581 - 1111111 Gain Updated on 2025-03-25 22:00:38.581004
+2025-03-25 22:00:38,581 - Updating data for Account ID: 88888888
+2025-03-25 22:00:41,263 - 88888888 History Orders Data Updated on 2025-03-25 22:00:41.263193
+2025-03-25 22:00:41,899 - 88888888 History Deals Data Updated on 2025-03-25 22:00:41.897210
+2025-03-25 22:00:42,512 - 88888888 Account Details Updated on 2025-03-25 22:00:42.512027
+2025-03-25 22:00:43,129 - 88888888 Gain Updated on 2025-03-25 22:00:43.129977
+2025-03-25 22:00:43,129 - Saving database changes...
+2025-03-25 22:00:47,913 - Database save completed.
+2025-03-25 22:00:47,914 - Sleeping for 4 Hours
+2025-03-25 22:10:58,658 - Initializing Script ......
+2025-03-25 22:10:58,658 - Logging in API ...........
+2025-03-25 22:10:59,580 - API Login Successful. Starting script to fetch data
+2025-03-25 22:11:00,236 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 22:12:03,033 - Initializing Script ......
+2025-03-25 22:12:03,043 - Logging in API ...........
+2025-03-25 22:12:03,947 - API Login Successful. Starting script to fetch data
+2025-03-25 22:12:04,601 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 22:12:05,912 - Updating data for Currency Pair: EURUSD
+2025-03-25 22:12:06,517 - Updating data for Currency Pair: GBPUSD
+2025-03-25 22:12:07,245 - Updating data for Currency Pair: USDJPY
+2025-03-25 22:12:08,063 - Updating data for Currency Pair: USDCHF
+2025-03-25 22:12:08,808 - Updating data for Currency Pair: EURJPY
+2025-03-25 22:12:09,560 - Updating data for Currency Pair: GBPJPY
+2025-03-25 22:12:10,444 - Updating data for Account ID: 555555555
+2025-03-25 22:12:13,826 - 555555555 History Orders Data Updated on 2025-03-25 22:12:13.823834
+2025-03-25 22:12:14,501 - 555555555 History Deals Data Updated on 2025-03-25 22:12:14.498417
+2025-03-25 22:12:15,219 - 555555555 Account Details Updated on 2025-03-25 22:12:15.217476
+2025-03-25 22:12:20,852 - API call error for /add_gain: 
+2025-03-25 22:12:20,853 - Updating data for Account ID: 1111111
+2025-03-25 22:12:24,376 - 1111111 History Orders Data Updated on 2025-03-25 22:12:24.369010
+2025-03-25 22:12:25,015 - 1111111 History Deals Data Updated on 2025-03-25 22:12:25.012769
+2025-03-25 22:12:25,656 - 1111111 Account Details Updated on 2025-03-25 22:12:25.651809
+2025-03-25 22:12:26,443 - 1111111 Gain Updated on 2025-03-25 22:12:26.441256
+2025-03-25 22:12:26,444 - Updating data for Account ID: 88888888
+2025-03-25 22:12:29,378 - 88888888 History Orders Data Updated on 2025-03-25 22:12:29.375069
+2025-03-25 22:12:30,011 - 88888888 History Deals Data Updated on 2025-03-25 22:12:30.007574
+2025-03-25 22:12:30,656 - 88888888 Account Details Updated on 2025-03-25 22:12:30.651635
+2025-03-25 22:12:31,299 - 88888888 Gain Updated on 2025-03-25 22:12:31.294871
+2025-03-25 22:12:31,301 - Saving database changes...
+2025-03-25 22:12:36,602 - Database save completed.
+2025-03-25 22:12:36,602 - Sleeping for 4 Hours
+2025-03-25 22:28:13,748 - Initializing Script ......
+2025-03-25 22:28:13,748 - Unexpected error in script: type object 'datetime.datetime' has no attribute 'datetime'
+2025-03-25 22:28:35,555 - Initializing Script ......
+2025-03-25 22:28:35,555 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 22:28:37,125 - Updating data for Currency Pair: EURUSD
+2025-03-25 22:28:37,755 - Updating data for Currency Pair: GBPUSD
+2025-03-25 22:28:38,370 - Updating data for Currency Pair: USDJPY
+2025-03-25 22:28:39,042 - Updating data for Currency Pair: USDCHF
+2025-03-25 22:28:39,705 - Updating data for Currency Pair: EURJPY
+2025-03-25 22:28:40,330 - Updating data for Currency Pair: GBPJPY
+2025-03-25 22:28:40,956 - Sleeping for 4 Hours
+2025-03-25 22:29:16,950 - Initializing Script ......
+2025-03-25 22:29:16,950 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 22:29:18,501 - Updating data for Currency Pair: EURUSD
+2025-03-25 22:29:19,133 - Updating data for Currency Pair: GBPUSD
+2025-03-25 22:29:19,759 - Updating data for Currency Pair: USDJPY
+2025-03-25 22:29:20,410 - Updating data for Currency Pair: USDCHF
+2025-03-25 22:29:21,017 - Updating data for Currency Pair: EURJPY
+2025-03-25 22:29:21,632 - Updating data for Currency Pair: GBPJPY
+2025-03-25 22:29:22,249 - Sleeping for 4 Hours
+2025-03-25 22:31:13,078 - Initializing Script ......
+2025-03-25 22:31:13,078 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 22:31:14,680 - Updating data for Currency Pair: EURUSD
+2025-03-25 22:31:15,297 - Updating data for Currency Pair: GBPUSD
+2025-03-25 22:31:15,943 - Updating data for Currency Pair: USDJPY
+2025-03-25 22:31:16,586 - Updating data for Currency Pair: USDCHF
+2025-03-25 22:31:17,170 - Updating data for Currency Pair: EURJPY
+2025-03-25 22:31:17,800 - Updating data for Currency Pair: GBPJPY
+2025-03-25 22:31:18,436 - Sleeping for 4 Hours
+2025-03-25 22:32:35,937 - Initializing Script ......
+2025-03-25 22:32:35,937 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 22:32:37,507 - Updating data for Currency Pair: EURUSD
+2025-03-25 22:32:38,123 - Updating data for Currency Pair: GBPUSD
+2025-03-25 22:32:38,738 - Updating data for Currency Pair: USDJPY
+2025-03-25 22:32:39,361 - Updating data for Currency Pair: USDCHF
+2025-03-25 22:32:39,955 - Updating data for Currency Pair: EURJPY
+2025-03-25 22:32:40,572 - Updating data for Currency Pair: GBPJPY
+2025-03-25 22:32:41,204 - Sleeping for 4 Hours
+2025-03-25 22:33:25,427 - Initializing Script ......
+2025-03-25 22:33:25,427 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 22:33:26,933 - Updating data for Currency Pair: EURUSD
+2025-03-25 22:33:27,517 - Updating data for Currency Pair: GBPUSD
+2025-03-25 22:33:28,146 - Updating data for Currency Pair: USDJPY
+2025-03-25 22:33:28,802 - Updating data for Currency Pair: USDCHF
+2025-03-25 22:33:29,397 - Updating data for Currency Pair: EURJPY
+2025-03-25 22:33:30,014 - Updating data for Currency Pair: GBPJPY
+2025-03-25 22:33:30,630 - Sleeping for 4 Hours
+2025-03-25 22:36:04,884 - Initializing Script ......
+2025-03-25 22:36:04,884 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 22:36:06,452 - Updating data for Currency Pair: EURUSD
+2025-03-25 22:36:28,282 - Initializing Script ......
+2025-03-25 22:36:28,282 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 22:36:29,810 - Updating data for Currency Pair: EURUSD
+2025-03-25 22:36:30,411 - Updating data for Currency Pair: GBPUSD
+2025-03-25 22:36:31,039 - Updating data for Currency Pair: USDJPY
+2025-03-25 22:36:31,691 - Updating data for Currency Pair: USDCHF
+2025-03-25 22:36:32,305 - Updating data for Currency Pair: EURJPY
+2025-03-25 22:36:32,941 - Updating data for Currency Pair: GBPJPY
+2025-03-25 22:36:33,556 - Sleeping for 5 Minute
+2025-03-25 22:36:53,161 - Initializing Script ......
+2025-03-25 22:36:53,161 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 22:36:54,729 - Updating data for Currency Pair: EURUSD
+2025-03-25 22:36:55,331 - Updating data for Currency Pair: GBPUSD
+2025-03-25 22:36:55,976 - Updating data for Currency Pair: USDJPY
+2025-03-25 22:36:56,620 - Updating data for Currency Pair: USDCHF
+2025-03-25 22:36:57,226 - Updating data for Currency Pair: EURJPY
+2025-03-25 22:37:22,741 - Initializing Script ......
+2025-03-25 22:37:22,741 - Logging in API ...........
+2025-03-25 22:37:23,656 - API Login Successful. Starting script to fetch data
+2025-03-25 22:37:23,656 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 22:37:24,985 - Updating data for Currency Pair: EURUSD
+2025-03-25 22:37:25,626 - Updating data for Currency Pair: GBPUSD
+2025-03-25 22:37:26,315 - Updating data for Currency Pair: USDJPY
+2025-03-25 22:37:26,976 - Updating data for Currency Pair: USDCHF
+2025-03-25 22:37:27,649 - Updating data for Currency Pair: EURJPY
+2025-03-25 22:37:28,325 - Updating data for Currency Pair: GBPJPY
+2025-03-25 22:37:29,085 - Sleeping for 5 Minute
+2025-03-25 22:39:49,807 - Initializing Script ......
+2025-03-25 22:39:49,807 - Logging in API ...........
+2025-03-25 22:39:50,718 - API Login Successful. Starting script to fetch data
+2025-03-25 22:39:50,718 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 22:39:51,992 - Updating data for Currency Pair: EURUSD
+2025-03-25 22:39:52,616 - Updating data for Currency Pair: GBPUSD
+2025-03-25 22:39:53,227 - Updating data for Currency Pair: USDJPY
+2025-03-25 22:39:53,842 - Updating data for Currency Pair: USDCHF
+2025-03-25 22:39:54,508 - Updating data for Currency Pair: EURJPY
+2025-03-25 22:39:55,145 - Updating data for Currency Pair: GBPJPY
+2025-03-25 22:39:55,882 - Sleeping for 5 Minute
+2025-03-25 22:40:45,478 - Initializing Script ......
+2025-03-25 22:40:45,478 - Logging in API ...........
+2025-03-25 22:40:46,341 - API Login Successful. Starting script to fetch data
+2025-03-25 22:40:46,341 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 22:42:09,436 - Initializing Script ......
+2025-03-25 22:42:09,437 - Logging in API ...........
+2025-03-25 22:42:41,012 - Initializing Script ......
+2025-03-25 22:42:41,012 - Logging in API ...........
+2025-03-25 22:42:41,946 - API Login Successful. Starting script to fetch data
+2025-03-25 22:42:41,946 - Loging in to Dummy user to update Currency Pair data
+2025-03-25 22:42:43,261 - Updating data for Currency Pair: EURUSD
+2025-03-25 22:42:43,882 - Updating data for Currency Pair: GBPUSD
+2025-03-25 22:42:44,535 - Updating data for Currency Pair: USDJPY
+2025-03-25 22:42:45,320 - Updating data for Currency Pair: USDCHF
+2025-03-25 22:42:46,010 - Updating data for Currency Pair: EURJPY
+2025-03-25 22:42:46,632 - Updating data for Currency Pair: GBPJPY
+2025-03-25 22:42:47,437 - Sleeping for 5 Minute
+2025-03-26 21:37:33,853 - Midnight updates error: can't compare offset-naive and offset-aware times
+2025-03-26 21:37:33,853 - Starting general data update...
+2025-03-26 21:37:35,512 - Updating data for Currency Pair: EURUSD
+2025-03-26 21:37:36,126 - Updating data for Currency Pair: GBPUSD
+2025-03-26 21:37:36,759 - Updating data for Currency Pair: USDJPY
+2025-03-26 21:37:37,408 - Updating data for Currency Pair: USDCHF
+2025-03-26 21:37:38,009 - Updating data for Currency Pair: EURJPY
+2025-03-26 21:37:38,642 - Updating data for Currency Pair: GBPJPY
+2025-03-26 21:55:45,414 - Midnight updates error: can't compare offset-naive and offset-aware times
+2025-03-26 21:55:45,415 - Starting general data update...
+2025-03-26 21:55:47,040 - Updating data for Currency Pair: EURUSD
+2025-03-26 21:55:47,649 - Updating data for Currency Pair: GBPUSD
+2025-03-26 21:55:48,284 - Updating data for Currency Pair: USDJPY
+2025-03-26 21:55:48,965 - Updating data for Currency Pair: USDCHF
+2025-03-26 21:55:49,580 - Updating data for Currency Pair: EURJPY
+2025-03-26 21:55:50,205 - Updating data for Currency Pair: GBPJPY
+2025-03-26 21:56:55,448 - Midnight updates error: can't compare offset-naive and offset-aware times
+2025-03-26 21:56:55,448 - Starting general data update...
+2025-03-26 21:56:57,024 - Updating data for Currency Pair: EURUSD
+2025-03-26 21:56:57,645 - Updating data for Currency Pair: GBPUSD
+2025-03-26 21:56:58,279 - Updating data for Currency Pair: USDJPY
+2025-03-27 22:37:48,524 - Initializing Script...
+2025-03-27 22:37:48,524 - Refreshing API token...
+2025-03-27 22:37:49,479 - Token refresh successful
+2025-03-27 22:37:49,494 - Logging in to Dummy user to update Currency Pair data
+2025-03-27 22:37:50,738 - Updated data for Currency Pair: EURUSD
+2025-03-27 22:37:51,365 - Updated data for Currency Pair: GBPUSD
+2025-03-27 22:37:51,988 - Updated data for Currency Pair: USDJPY
+2025-03-27 22:37:52,597 - Updated data for Currency Pair: USDCHF
+2025-03-27 22:37:53,220 - Updated data for Currency Pair: EURJPY
+2025-03-27 22:37:53,852 - Updated data for Currency Pair: GBPJPY
+2025-03-27 22:37:54,486 - Updating users Data...
+2025-03-27 22:37:55,104 - Saving Database Changes...
+2025-03-27 22:37:59,257 - Database save completed
+2025-03-27 22:37:59,257 - Fatal error: '<=' not supported between instances of 'NoneType' and 'int'
+2025-03-27 22:40:39,193 - Initializing Script...
+2025-03-27 22:40:39,193 - Refreshing API token...
+2025-03-27 22:40:40,050 - Token refresh successful
+2025-03-27 22:40:40,050 - Logging in to Dummy user to update Currency Pair data
+2025-03-27 22:40:41,532 - Updated data for Currency Pair: EURUSD
+2025-03-27 22:40:42,340 - Updated data for Currency Pair: GBPUSD
+2025-03-27 22:40:43,106 - Updated data for Currency Pair: USDJPY
+2025-03-27 22:40:43,921 - Updated data for Currency Pair: USDCHF
+2025-03-27 22:40:44,773 - Updated data for Currency Pair: EURJPY
+2025-03-27 22:40:45,620 - Updated data for Currency Pair: GBPJPY
+2025-03-27 22:40:46,334 - Updating users Data...
+2025-03-27 22:40:46,952 - Updating MT5 data for Account ID: 555555555
+2025-03-27 22:40:50,282 - history_orders: 555555555 History Orders Data Updated on 2025-03-27 22:40:50.216294
+2025-03-27 22:40:50,964 - history_deals: 555555555 History Deals Data Updated on 2025-03-27 22:40:50.901687
+2025-03-27 22:40:51,604 - account_details: 555555555 Account Details Updated on 2025-03-27 22:40:51.604013
+2025-03-27 22:40:54,271 - add_gain: 555555555 Gain Updated on 2025-03-27 22:40:54.271477
+2025-03-27 22:40:54,278 - Updating MT5 data for Account ID: 1111111
+2025-03-27 22:40:57,399 - history_orders: 1111111 History Orders Data Updated on 2025-03-27 22:40:57.388226
+2025-03-27 22:40:58,012 - history_deals: 1111111 History Deals Data Updated on 2025-03-27 22:40:58.012085
+2025-03-27 22:40:58,616 - account_details: 1111111 Account Details Updated on 2025-03-27 22:40:58.612166
+2025-03-27 22:40:59,302 - add_gain: 1111111 Gain Updated on 2025-03-27 22:40:59.302837
+2025-03-27 22:40:59,302 - Updating MT5 data for Account ID: 88888888
+2025-03-27 22:41:02,245 - history_orders: 88888888 History Orders Data Updated on 2025-03-27 22:41:02.245822
+2025-03-27 22:41:02,926 - history_deals: 88888888 History Deals Data Updated on 2025-03-27 22:41:02.925986
+2025-03-27 22:41:03,561 - account_details: 88888888 Account Details Updated on 2025-03-27 22:41:03.561597
+2025-03-27 22:41:04,168 - add_gain: 88888888 Gain Updated on 2025-03-27 22:41:04.166612
+2025-03-27 22:41:04,168 - Saving Database Changes...
+2025-03-27 22:41:08,757 - Database save completed
+2025-03-27 22:41:08,757 - Fatal error: '<=' not supported between instances of 'NoneType' and 'int'
+2025-03-27 22:43:44,063 - Initializing Script...
+2025-03-27 22:43:44,063 - Refreshing API token...
+2025-03-27 22:43:44,965 - Token refresh successful
+2025-03-27 22:43:44,965 - Logging in to Dummy user to update Currency Pair data
+2025-03-27 22:43:46,268 - Updated data for Currency Pair: EURUSD
+2025-03-27 22:43:46,886 - Updated data for Currency Pair: GBPUSD
+2025-03-27 22:43:47,553 - Updated data for Currency Pair: USDJPY
+2025-03-27 22:43:48,182 - Updated data for Currency Pair: USDCHF
+2025-03-27 22:43:48,947 - Updated data for Currency Pair: EURJPY
+2025-03-27 22:43:49,761 - Updated data for Currency Pair: GBPJPY
+2025-03-27 22:43:50,477 - Updating users Data...
+2025-03-27 22:43:51,072 - Updating MT5 data for Account ID: 555555555
+2025-03-27 22:43:54,210 - history_orders: 555555555 History Orders Data Updated on 2025-03-27 22:43:54.126117
+2025-03-27 22:43:54,824 - history_deals: 555555555 History Deals Data Updated on 2025-03-27 22:43:54.816394
+2025-03-27 22:43:55,480 - account_details: 555555555 Account Details Updated on 2025-03-27 22:43:55.480128
+2025-03-27 22:43:58,135 - add_gain: 555555555 Gain Updated on 2025-03-27 22:43:58.135175
+2025-03-27 22:43:58,135 - Updating MT5 data for Account ID: 1111111
+2025-03-27 22:44:01,239 - history_orders: 1111111 History Orders Data Updated on 2025-03-27 22:44:01.223230
+2025-03-27 22:44:01,859 - history_deals: 1111111 History Deals Data Updated on 2025-03-27 22:44:01.859055
+2025-03-27 22:44:02,489 - account_details: 1111111 Account Details Updated on 2025-03-27 22:44:02.483917
+2025-03-27 22:44:03,220 - add_gain: 1111111 Gain Updated on 2025-03-27 22:44:03.219631
+2025-03-27 22:44:03,220 - Updating MT5 data for Account ID: 88888888
+2025-03-27 22:44:05,791 - history_orders: 88888888 History Orders Data Updated on 2025-03-27 22:44:05.786429
+2025-03-27 22:44:06,402 - history_deals: 88888888 History Deals Data Updated on 2025-03-27 22:44:06.402615
+2025-03-27 22:44:07,023 - account_details: 88888888 Account Details Updated on 2025-03-27 22:44:07.016782
+2025-03-27 22:44:07,628 - add_gain: 88888888 Gain Updated on 2025-03-27 22:44:07.620057
+2025-03-27 22:44:07,628 - Saving Database Changes...
+2025-03-27 22:44:12,354 - Database save completed
+2025-03-27 22:44:12,354 - Fatal error: '<=' not supported between instances of 'NoneType' and 'int'
+2025-03-27 23:57:58,583 - Initializing Script...
+2025-03-27 23:57:58,585 - Refreshing API token...
+2025-03-27 23:57:59,562 - Token refresh successful
+2025-03-27 23:57:59,563 - Logging in to Dummy user to update Currency Pair data
+2025-03-27 23:58:00,889 - Updated data for Currency Pair: EURUSD
+2025-03-27 23:58:01,553 - Updated data for Currency Pair: GBPUSD
+2025-03-27 23:58:02,190 - Updated data for Currency Pair: USDJPY
+2025-03-27 23:58:02,830 - Updated data for Currency Pair: USDCHF
+2025-03-27 23:58:03,457 - Updated data for Currency Pair: EURJPY
+2025-03-27 23:58:04,097 - Updated data for Currency Pair: GBPJPY
+2025-03-27 23:58:04,738 - Updating users Data...
+2025-03-27 23:58:05,373 - Updating MT5 data for Account ID: 555555555
+2025-03-27 23:58:06,005 - Updating MT5 data for Account ID: 1111111
+2025-03-27 23:58:06,653 - Updating MT5 data for Account ID: 88888888
+2025-03-27 23:58:07,283 - Saving Database Changes...
+2025-03-27 23:58:11,800 - Database save completed
+2025-03-27 23:58:11,803 - Fatal error: '<=' not supported between instances of 'NoneType' and 'int'
+2025-03-27 23:58:45,370 - Initializing Script...
+2025-03-27 23:58:45,370 - Refreshing API token...
+2025-03-27 23:58:46,288 - Token refresh successful
+2025-03-27 23:58:46,289 - Logging in to Dummy user to update Currency Pair data
+2025-03-27 23:58:47,575 - Updated data for Currency Pair: EURUSD
+2025-03-27 23:58:48,213 - Updated data for Currency Pair: GBPUSD
+2025-03-27 23:58:48,950 - Updated data for Currency Pair: USDJPY
+2025-03-27 23:58:49,653 - Updated data for Currency Pair: USDCHF
+2025-03-27 23:58:50,564 - Updated data for Currency Pair: EURJPY
+2025-03-27 23:58:51,363 - Updated data for Currency Pair: GBPJPY
+2025-03-27 23:58:52,097 - Updating users Data...
+2025-03-27 23:58:52,705 - Updating MT5 data for Account ID: 555555555
+2025-03-27 23:58:55,811 - history_orders: 555555555 History Orders Data Updated on 2025-03-27 23:58:55.800103
+2025-03-27 23:58:56,451 - history_deals: 555555555 History Deals Data Updated on 2025-03-27 23:58:56.445207
+2025-03-27 23:58:57,107 - account_details: 555555555 Account Details Updated on 2025-03-27 23:58:57.106080
+2025-03-27 23:58:59,851 - add_gain: 555555555 Gain Updated on 2025-03-27 23:58:59.849788
+2025-03-27 23:58:59,852 - Updating MT5 data for Account ID: 1111111
+2025-03-27 23:59:02,790 - history_orders: 1111111 History Orders Data Updated on 2025-03-27 23:59:02.785820
+2025-03-27 23:59:03,451 - history_deals: 1111111 History Deals Data Updated on 2025-03-27 23:59:03.447292
+2025-03-27 23:59:04,078 - account_details: 1111111 Account Details Updated on 2025-03-27 23:59:04.076496
+2025-03-27 23:59:04,798 - add_gain: 1111111 Gain Updated on 2025-03-27 23:59:04.797776
+2025-03-27 23:59:04,800 - Updating MT5 data for Account ID: 88888888
+2025-03-27 23:59:07,828 - history_orders: 88888888 History Orders Data Updated on 2025-03-27 23:59:07.823962
+2025-03-27 23:59:08,456 - history_deals: 88888888 History Deals Data Updated on 2025-03-27 23:59:08.451586
+2025-03-27 23:59:09,099 - account_details: 88888888 Account Details Updated on 2025-03-27 23:59:09.093436
+2025-03-27 23:59:09,736 - add_gain: 88888888 Gain Updated on 2025-03-27 23:59:09.733610
+2025-03-27 23:59:09,736 - Saving Database Changes...
+2025-03-27 23:59:14,460 - Database save completed
+2025-03-27 23:59:14,462 - Fatal error: '<=' not supported between instances of 'NoneType' and 'int'
+2025-03-27 23:59:57,380 - Initializing Script...
+2025-03-27 23:59:57,381 - Refreshing API token...
+2025-03-27 23:59:58,281 - Token refresh successful
+2025-03-27 23:59:58,282 - Logging in to Dummy user to update Currency Pair data
+2025-03-27 23:59:59,575 - Updated data for Currency Pair: EURUSD
+2025-03-28 00:00:00,214 - Updated data for Currency Pair: GBPUSD
+2025-03-28 00:00:00,851 - Updated data for Currency Pair: USDJPY
+2025-03-28 00:00:01,546 - Updated data for Currency Pair: USDCHF
+2025-03-28 00:00:02,219 - Updated data for Currency Pair: EURJPY
+2025-03-28 00:00:02,870 - Updated data for Currency Pair: GBPJPY
+2025-03-28 00:00:03,611 - Updating users Data...
+2025-03-28 00:00:04,219 - Updating MT5 data for Account ID: 555555555
+2025-03-28 00:00:07,249 - history_orders: 555555555 History Orders Data Updated on 2025-03-28 00:00:07.166973
+2025-03-28 00:00:07,877 - history_deals: 555555555 History Deals Data Updated on 2025-03-28 00:00:07.872899
+2025-03-28 00:00:08,542 - account_details: 555555555 Account Details Updated on 2025-03-28 00:00:08.540640
+2025-03-28 00:00:11,304 - add_gain: 555555555 Gain Updated on 2025-03-28 00:00:11.303074
+2025-03-28 00:00:11,305 - Updating MT5 data for Account ID: 1111111
+2025-03-28 00:00:14,298 - history_orders: 1111111 History Orders Data Updated on 2025-03-28 00:00:14.292905
+2025-03-28 00:00:14,912 - history_deals: 1111111 History Deals Data Updated on 2025-03-28 00:00:14.907560
+2025-03-28 00:00:15,529 - account_details: 1111111 Account Details Updated on 2025-03-28 00:00:15.524874
+2025-03-28 00:00:16,247 - add_gain: 1111111 Gain Updated on 2025-03-28 00:00:16.245682
+2025-03-28 00:00:16,248 - Updating MT5 data for Account ID: 88888888
+2025-03-28 00:00:18,838 - history_orders: 88888888 History Orders Data Updated on 2025-03-28 00:00:18.833455
+2025-03-28 00:00:19,498 - history_deals: 88888888 History Deals Data Updated on 2025-03-28 00:00:19.491248
+2025-03-28 00:00:20,143 - account_details: 88888888 Account Details Updated on 2025-03-28 00:00:20.138636
+2025-03-28 00:00:20,800 - add_gain: 88888888 Gain Updated on 2025-03-28 00:00:20.796495
+2025-03-28 00:00:20,802 - Saving Database Changes...
+2025-03-28 00:00:20,803 - Database save completed
+2025-03-28 00:00:20,809 - Fatal error: '<=' not supported between instances of 'NoneType' and 'int'
+2025-03-28 00:02:50,322 - Initializing Script...
+2025-03-28 00:02:50,323 - Refreshing API token...
+2025-03-28 00:02:51,219 - Token refresh successful
+2025-03-28 00:02:51,221 - Logging in to Dummy user to update Currency Pair data
+2025-03-28 00:02:52,536 - Updated data for Currency Pair: EURUSD
+2025-03-28 00:02:53,216 - Updated data for Currency Pair: GBPUSD
+2025-03-28 00:02:53,879 - Updated data for Currency Pair: USDJPY
+2025-03-28 00:02:54,540 - Updated data for Currency Pair: USDCHF
+2025-03-28 00:02:55,228 - Updated data for Currency Pair: EURJPY
+2025-03-28 00:02:55,911 - Updated data for Currency Pair: GBPJPY
+2025-03-28 00:02:56,685 - Updating users Data...
+2025-03-28 00:02:57,301 - Updating MT5 data for Account ID: 555555555
+2025-03-28 00:03:00,318 - history_orders: 555555555 History Orders Data Updated on 2025-03-28 00:03:00.256653
+2025-03-28 00:03:00,994 - history_deals: 555555555 History Deals Data Updated on 2025-03-28 00:03:00.991524
+2025-03-28 00:03:01,671 - account_details: 555555555 Account Details Updated on 2025-03-28 00:03:01.669357
+2025-03-28 00:03:04,534 - add_gain: 555555555 Gain Updated on 2025-03-28 00:03:04.532131
+2025-03-28 00:03:04,535 - Updating MT5 data for Account ID: 1111111
+2025-03-28 00:03:07,331 - history_orders: 1111111 History Orders Data Updated on 2025-03-28 00:03:07.326521
+2025-03-28 00:03:07,943 - history_deals: 1111111 History Deals Data Updated on 2025-03-28 00:03:07.941661
+2025-03-28 00:03:08,541 - account_details: 1111111 Account Details Updated on 2025-03-28 00:03:08.539427
+2025-03-28 00:03:09,221 - add_gain: 1111111 Gain Updated on 2025-03-28 00:03:09.219217
+2025-03-28 00:03:09,221 - Updating MT5 data for Account ID: 88888888
+2025-03-28 00:03:11,797 - history_orders: 88888888 History Orders Data Updated on 2025-03-28 00:03:11.793542
+2025-03-28 00:03:12,438 - history_deals: 88888888 History Deals Data Updated on 2025-03-28 00:03:12.433767
+2025-03-28 00:03:13,062 - account_details: 88888888 Account Details Updated on 2025-03-28 00:03:13.060659
+2025-03-28 00:03:13,661 - add_gain: 88888888 Gain Updated on 2025-03-28 00:03:13.659215
+2025-03-28 00:03:13,661 - Saving Database Changes...
+2025-03-28 00:03:13,662 - Database save completed
+2025-03-28 00:03:13,664 - Fatal error: '<=' not supported between instances of 'NoneType' and 'int'
+2025-03-28 00:03:35,822 - Initializing Script...
+2025-03-28 00:03:35,823 - Refreshing API token...
+2025-03-28 00:03:36,722 - Token refresh successful
+2025-03-28 00:03:36,723 - Logging in to Dummy user to update Currency Pair data
+2025-03-28 00:03:38,054 - Updated data for Currency Pair: EURUSD
+2025-03-28 00:03:38,718 - Updated data for Currency Pair: GBPUSD
+2025-03-28 00:03:39,399 - Updated data for Currency Pair: USDJPY
+2025-03-28 00:03:40,077 - Updated data for Currency Pair: USDCHF
+2025-03-28 00:03:40,755 - Updated data for Currency Pair: EURJPY
+2025-03-28 00:03:41,424 - Updated data for Currency Pair: GBPJPY
+2025-03-28 00:03:42,217 - Updating users Data...
+2025-03-28 00:03:42,824 - Updating MT5 data for Account ID: 555555555
+2025-03-28 00:03:45,769 - history_orders: 555555555 History Orders Data Updated on 2025-03-28 00:03:45.707665
+2025-03-28 00:03:46,378 - history_deals: 555555555 History Deals Data Updated on 2025-03-28 00:03:46.374726
+2025-03-28 00:03:47,047 - account_details: 555555555 Account Details Updated on 2025-03-28 00:03:47.044710
+2025-03-28 00:03:49,985 - add_gain: 555555555 Gain Updated on 2025-03-28 00:03:49.982525
+2025-03-28 00:03:49,986 - Updating MT5 data for Account ID: 1111111
+2025-03-28 00:03:52,854 - history_orders: 1111111 History Orders Data Updated on 2025-03-28 00:03:52.849969
+2025-03-28 00:03:53,486 - history_deals: 1111111 History Deals Data Updated on 2025-03-28 00:03:53.479201
+2025-03-28 00:03:54,114 - account_details: 1111111 Account Details Updated on 2025-03-28 00:03:54.111383
+2025-03-28 00:03:54,825 - add_gain: 1111111 Gain Updated on 2025-03-28 00:03:54.823481
+2025-03-28 00:03:54,825 - Updating MT5 data for Account ID: 88888888
+2025-03-28 00:03:57,402 - history_orders: 88888888 History Orders Data Updated on 2025-03-28 00:03:57.398064
+2025-03-28 00:03:58,022 - history_deals: 88888888 History Deals Data Updated on 2025-03-28 00:03:58.020922
+2025-03-28 00:03:58,646 - account_details: 88888888 Account Details Updated on 2025-03-28 00:03:58.642780
+2025-03-28 00:03:59,268 - add_gain: 88888888 Gain Updated on 2025-03-28 00:03:59.264123
+2025-03-28 00:03:59,269 - Saving Database Changes...
+2025-03-28 00:03:59,270 - Database save completed
+2025-03-28 00:03:59,274 - Fatal error: '<=' not supported between instances of 'NoneType' and 'int'
+2025-03-28 00:04:11,277 - Initializing Script...
+2025-03-28 00:04:11,278 - Refreshing API token...
+2025-03-28 00:04:12,189 - Token refresh successful
+2025-03-28 00:04:12,190 - Logging in to Dummy user to update Currency Pair data
+2025-03-28 00:14:05,985 - Initializing Script...
+2025-03-28 00:14:05,986 - Refreshing API token...
+2025-03-28 00:14:06,894 - Token refresh successful
+2025-03-28 00:14:06,896 - Logging in to Dummy user to update Currency Pair data
+2025-03-28 00:14:08,262 - Updated data for Currency Pair: EURUSD
+2025-03-28 00:14:08,951 - Updated data for Currency Pair: GBPUSD
+2025-03-28 00:14:09,637 - Updated data for Currency Pair: USDJPY
+2025-03-28 00:14:10,288 - Updated data for Currency Pair: USDCHF
+2025-03-28 00:14:10,979 - Updated data for Currency Pair: EURJPY
+2025-03-28 00:14:11,650 - Updated data for Currency Pair: GBPJPY
+2025-03-28 00:14:12,445 - Updating users Data...
+2025-03-28 00:14:13,048 - Updating MT5 data for Account ID: 555555555
+2025-03-28 00:14:16,064 - history_orders: 555555555 History Orders Data Updated on 2025-03-28 00:14:16.061444
+2025-03-28 00:14:16,689 - history_deals: 555555555 History Deals Data Updated on 2025-03-28 00:14:16.687270
+2025-03-28 00:14:17,389 - account_details: 555555555 Account Details Updated on 2025-03-28 00:14:17.388901
+2025-03-28 00:14:20,196 - add_gain: 555555555 Gain Updated on 2025-03-28 00:14:20.194605
+2025-03-28 00:14:20,197 - Updating MT5 data for Account ID: 1111111
+2025-03-28 00:14:23,119 - history_orders: 1111111 History Orders Data Updated on 2025-03-28 00:14:23.116173
+2025-03-28 00:14:23,735 - history_deals: 1111111 History Deals Data Updated on 2025-03-28 00:14:23.731943
+2025-03-28 00:14:24,367 - account_details: 1111111 Account Details Updated on 2025-03-28 00:14:24.364820
+2025-03-28 00:14:25,102 - add_gain: 1111111 Gain Updated on 2025-03-28 00:14:25.100333
+2025-03-28 00:14:25,103 - Updating MT5 data for Account ID: 88888888
+2025-03-28 00:14:28,168 - history_orders: 88888888 History Orders Data Updated on 2025-03-28 00:14:28.166729
+2025-03-28 00:14:28,780 - history_deals: 88888888 History Deals Data Updated on 2025-03-28 00:14:28.777242
+2025-03-28 00:14:29,393 - account_details: 88888888 Account Details Updated on 2025-03-28 00:14:29.390484
+2025-03-28 00:14:30,005 - add_gain: 88888888 Gain Updated on 2025-03-28 00:14:30.002415
+2025-03-28 00:14:30,007 - Saving Database Changes...
+2025-03-28 00:14:35,143 - Database save completed
+2025-03-28 00:14:35,145 - Fatal error: '<=' not supported between instances of 'NoneType' and 'int'
+2025-03-28 00:16:30,599 - Initializing Script...
+2025-03-28 00:16:30,600 - Refreshing API token...
+2025-03-28 00:16:31,507 - Token refresh successful
+2025-03-28 00:16:31,510 - Logging in to Dummy user to update Currency Pair data
+2025-03-28 00:16:33,830 - Updated data for Currency Pair: EURUSD
+2025-03-28 00:16:34,453 - Updated data for Currency Pair: GBPUSD
+2025-03-28 00:16:35,095 - Updated data for Currency Pair: USDJPY
+2025-03-28 00:16:35,753 - Updated data for Currency Pair: USDCHF
+2025-03-28 00:16:36,409 - Updated data for Currency Pair: EURJPY
+2025-03-28 00:16:37,052 - Updated data for Currency Pair: GBPJPY
+2025-03-28 00:16:37,803 - Updating users Data...
+2025-03-28 00:16:38,405 - Updating MT5 data for Account ID: 555555555
+2025-03-28 00:16:41,493 - history_orders: 555555555 History Orders Data Updated on 2025-03-28 00:16:41.438241
+2025-03-28 00:16:42,113 - history_deals: 555555555 History Deals Data Updated on 2025-03-28 00:16:42.109052
+2025-03-28 00:16:42,757 - account_details: 555555555 Account Details Updated on 2025-03-28 00:16:42.754970
+2025-03-28 00:16:45,508 - add_gain: 555555555 Gain Updated on 2025-03-28 00:16:45.506553
+2025-03-28 00:16:45,508 - Updating MT5 data for Account ID: 1111111
+2025-03-28 00:16:48,518 - history_orders: 1111111 History Orders Data Updated on 2025-03-28 00:16:48.511722
+2025-03-28 00:16:49,161 - history_deals: 1111111 History Deals Data Updated on 2025-03-28 00:16:49.155006
+2025-03-28 00:16:49,785 - account_details: 1111111 Account Details Updated on 2025-03-28 00:16:49.783136
+2025-03-28 00:16:50,507 - add_gain: 1111111 Gain Updated on 2025-03-28 00:16:50.505382
+2025-03-28 00:16:50,508 - Updating MT5 data for Account ID: 88888888
+2025-03-28 00:16:53,090 - history_orders: 88888888 History Orders Data Updated on 2025-03-28 00:16:53.084247
+2025-03-28 00:16:53,727 - history_deals: 88888888 History Deals Data Updated on 2025-03-28 00:16:53.723676
+2025-03-28 00:16:54,356 - account_details: 88888888 Account Details Updated on 2025-03-28 00:16:54.353079
+2025-03-28 00:16:54,982 - add_gain: 88888888 Gain Updated on 2025-03-28 00:16:54.979038
+2025-03-28 00:16:54,983 - Saving Database Changes...
+2025-03-28 00:17:00,229 - Database save completed
+2025-03-28 00:17:00,231 - Fatal error: '<=' not supported between instances of 'str' and 'int'
+2025-03-28 00:17:47,715 - Initializing Script...
+2025-03-28 00:17:47,716 - Refreshing API token...
+2025-03-28 00:17:48,626 - Token refresh successful
+2025-03-28 00:17:48,628 - Logging in to Dummy user to update Currency Pair data
+2025-03-28 00:17:49,953 - Updated data for Currency Pair: EURUSD
+2025-03-28 00:17:50,599 - Updated data for Currency Pair: GBPUSD
+2025-03-28 00:17:51,286 - Updated data for Currency Pair: USDJPY
+2025-03-28 00:17:51,920 - Updated data for Currency Pair: USDCHF
+2025-03-28 00:17:52,593 - Updated data for Currency Pair: EURJPY
+2025-03-28 00:17:53,297 - Updated data for Currency Pair: GBPJPY
+2025-03-28 00:17:54,070 - Updating users Data...
+2025-03-28 00:17:54,675 - Updating MT5 data for Account ID: 555555555
+2025-03-28 00:17:57,791 - history_orders: 555555555 History Orders Data Updated on 2025-03-28 00:17:57.735764
+2025-03-28 00:17:58,416 - history_deals: 555555555 History Deals Data Updated on 2025-03-28 00:17:58.410937
+2025-03-28 00:17:59,070 - account_details: 555555555 Account Details Updated on 2025-03-28 00:17:59.068407
+2025-03-28 00:18:01,843 - add_gain: 555555555 Gain Updated on 2025-03-28 00:18:01.841876
+2025-03-28 00:18:01,844 - Updating MT5 data for Account ID: 1111111
+2025-03-28 00:18:04,753 - history_orders: 1111111 History Orders Data Updated on 2025-03-28 00:18:04.745072
+2025-03-28 00:18:05,372 - history_deals: 1111111 History Deals Data Updated on 2025-03-28 00:18:05.369988
+2025-03-28 00:18:06,001 - account_details: 1111111 Account Details Updated on 2025-03-28 00:18:05.998809
+2025-03-28 00:18:06,733 - add_gain: 1111111 Gain Updated on 2025-03-28 00:18:06.731546
+2025-03-28 00:18:06,734 - Updating MT5 data for Account ID: 88888888
+2025-03-28 00:18:09,299 - history_orders: 88888888 History Orders Data Updated on 2025-03-28 00:18:09.295715
+2025-03-28 00:18:09,926 - history_deals: 88888888 History Deals Data Updated on 2025-03-28 00:18:09.923813
+2025-03-28 00:18:10,533 - account_details: 88888888 Account Details Updated on 2025-03-28 00:18:10.527171
+2025-03-28 00:18:11,188 - add_gain: 88888888 Gain Updated on 2025-03-28 00:18:11.184544
+2025-03-28 00:18:11,190 - Saving Database Changes...
+2025-03-28 00:18:16,331 - Database save completed
+2025-03-28 00:19:42,965 - Initializing Script...
+2025-03-28 00:19:42,966 - Refreshing API token...
+2025-03-28 00:19:43,875 - Token refresh successful
+2025-03-28 00:19:43,876 - Logging in to Dummy user to update Currency Pair data
+2025-03-28 00:19:45,214 - Updated data for Currency Pair: EURUSD
+2025-03-28 00:19:45,876 - Updated data for Currency Pair: GBPUSD
+2025-03-28 00:19:46,560 - Updated data for Currency Pair: USDJPY
+2025-03-28 00:19:47,220 - Updated data for Currency Pair: USDCHF
+2025-03-28 00:19:47,876 - Updated data for Currency Pair: EURJPY
+2025-03-28 00:19:48,521 - Updated data for Currency Pair: GBPJPY
+2025-03-28 00:19:49,321 - Updating users Data...
+2025-03-28 00:19:49,915 - Updating MT5 data for Account ID: 555555555
+2025-03-28 00:19:52,722 - history_orders: 555555555 History Orders Data Updated on 2025-03-28 00:19:52.677933
+2025-03-28 00:19:53,373 - history_deals: 555555555 History Deals Data Updated on 2025-03-28 00:19:53.370285
+2025-03-28 00:19:54,026 - account_details: 555555555 Account Details Updated on 2025-03-28 00:19:54.025081
+2025-03-28 00:19:56,832 - add_gain: 555555555 Gain Updated on 2025-03-28 00:19:56.830236
+2025-03-28 00:19:56,833 - Updating MT5 data for Account ID: 1111111
+2025-03-28 00:19:59,775 - history_orders: 1111111 History Orders Data Updated on 2025-03-28 00:19:59.767312
+2025-03-28 00:20:00,396 - history_deals: 1111111 History Deals Data Updated on 2025-03-28 00:20:00.393525
+2025-03-28 00:20:01,041 - account_details: 1111111 Account Details Updated on 2025-03-28 00:20:01.038564
+2025-03-28 00:20:01,743 - add_gain: 1111111 Gain Updated on 2025-03-28 00:20:01.741975
+2025-03-28 00:20:01,744 - Updating MT5 data for Account ID: 88888888
+2025-03-28 00:20:04,775 - history_orders: 88888888 History Orders Data Updated on 2025-03-28 00:20:04.772805
+2025-03-28 00:20:05,464 - history_deals: 88888888 History Deals Data Updated on 2025-03-28 00:20:05.462282
+2025-03-28 00:20:06,096 - account_details: 88888888 Account Details Updated on 2025-03-28 00:20:06.093570
+2025-03-28 00:20:06,748 - add_gain: 88888888 Gain Updated on 2025-03-28 00:20:06.747994
+2025-03-28 00:20:06,749 - Saving Database Changes...
+2025-03-28 00:20:12,080 - Database save completed
+2025-03-28 00:20:12,082 - Fatal error: '<=' not supported between instances of 'str' and 'int'
+2025-03-28 00:20:58,642 - Initializing Script...
+2025-03-28 00:20:58,643 - Refreshing API token...
+2025-03-28 00:20:59,572 - Token refresh successful
+2025-03-28 00:20:59,573 - Logging in to Dummy user to update Currency Pair data
+2025-03-28 00:21:00,947 - Updated data for Currency Pair: EURUSD
+2025-03-28 00:21:01,619 - Updated data for Currency Pair: GBPUSD
+2025-03-28 00:21:02,303 - Updated data for Currency Pair: USDJPY
+2025-03-28 00:21:02,963 - Updated data for Currency Pair: USDCHF
+2025-03-28 00:21:03,670 - Updated data for Currency Pair: EURJPY
+2025-03-28 00:21:04,332 - Updated data for Currency Pair: GBPJPY
+2025-03-28 00:21:05,097 - Updating users Data...
+2025-03-28 00:21:05,695 - Updating MT5 data for Account ID: 555555555
+2025-03-28 00:21:08,799 - history_orders: 555555555 History Orders Data Updated on 2025-03-28 00:21:08.744669
+2025-03-28 00:21:09,414 - history_deals: 555555555 History Deals Data Updated on 2025-03-28 00:21:09.410888
+2025-03-28 00:21:10,108 - account_details: 555555555 Account Details Updated on 2025-03-28 00:21:10.103975
+2025-03-28 00:21:12,931 - add_gain: 555555555 Gain Updated on 2025-03-28 00:21:12.929132
+2025-03-28 00:21:12,932 - Updating MT5 data for Account ID: 1111111
+2025-03-28 00:21:15,915 - history_orders: 1111111 History Orders Data Updated on 2025-03-28 00:21:15.912099
+2025-03-28 00:21:16,519 - history_deals: 1111111 History Deals Data Updated on 2025-03-28 00:21:16.513951
+2025-03-28 00:21:17,146 - account_details: 1111111 Account Details Updated on 2025-03-28 00:21:17.143226
+2025-03-28 00:21:17,840 - add_gain: 1111111 Gain Updated on 2025-03-28 00:21:17.839557
+2025-03-28 00:21:17,841 - Updating MT5 data for Account ID: 88888888
+2025-03-28 00:21:20,861 - history_orders: 88888888 History Orders Data Updated on 2025-03-28 00:21:20.854328
+2025-03-28 00:21:21,503 - history_deals: 88888888 History Deals Data Updated on 2025-03-28 00:21:21.497858
+2025-03-28 00:21:22,132 - account_details: 88888888 Account Details Updated on 2025-03-28 00:21:22.128597
+2025-03-28 00:21:22,778 - add_gain: 88888888 Gain Updated on 2025-03-28 00:21:22.774430
+2025-03-28 00:21:22,780 - Saving Database Changes...
+2025-03-28 00:21:27,934 - Database save completed

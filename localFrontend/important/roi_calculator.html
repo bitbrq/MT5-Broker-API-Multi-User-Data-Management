@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>ROI Calculator</title>
+</head>
+<body>
+    <div class="form-container" id="compound-calculator">
+        <h2>ROI Calculator</h2>
+        <form id="calculator-form">
+            <label for="principal">Initial Investment ($):</label>
+            <input type="number" id="principal" name="principal" required>
+
+            <label for="contribution">Monthly Contribution ($):</label>
+            <input type="number" id="contribution" name="contribution">
+
+            <label for="years">Length of Time in Years:</label>
+            <input type="number" id="years" name="years" required>
+
+            <label for="rate">Plan (Annual Interest Rate %):</label>
+            <select id="plan" name="plan" required>
+                <option value="25">Low Risk (25% per annum)</option>
+                <option value="60">Moderate Risk (60% per annum)</option>
+                <option value="100">High Risk (100% per annum)</option>
+            </select>
+            
+            <button type="button" onclick="calculateAndDisplay()">Calculate</button>
+        </form>
+        <div id="result"></div>
+        <div id="total-savings-graph"></div>
+    </div>
+    <script>
+        function calculateCompoundInterestMonthly(principal, contribution, years, rate) {
+            const n_monthly = 12;
+            const monthly_rate = rate / n_monthly / 100; // Convert percentage to decimal and divide by 12
+            let FV_monthly = principal;
+            let totalInvestment = principal;
+            let calculationData = [];
+
+            for (let i = 0; i < years * n_monthly; i++) {
+                FV_monthly *= (1 + monthly_rate);
+                FV_monthly += contribution;
+                totalInvestment += contribution;
+                if ((i + 1) % 12 === 0) {
+                    calculationData.push({
+                        year: (i + 1) / 12,
+                        contribution: contribution * 12,
+                        investment: totalInvestment, 
+                        total: FV_monthly
+                    });
+                }
+            }
+            sessionStorage.setItem("calculationData", JSON.stringify(calculationData));
+            return parseFloat(FV_monthly.toFixed(2));
+        }
+
+        function calculateAndDisplay() {
+            const form = document.getElementById('calculator-form');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            let principal = parseFloat(document.getElementById('principal').value);
+            let contribution = parseFloat(document.getElementById('contribution').value) || 0;
+            let years = parseFloat(document.getElementById('years').value);
+            let plan = parseFloat(document.getElementById('plan').value);
+
+            let futureValue = calculateCompoundInterestMonthly(principal, contribution, years, plan);
+            let totalInvested = principal + (contribution * years * 12);
+            let profit = futureValue - totalInvested;
+
+            let resultHTML = `<h3>Investment Summary</h3>
+                            <p>After ${years} years you will have: $${futureValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
+                            <p>Total invested: $${totalInvested.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
+                            <p>Estimated profit: $${profit.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>`;
+
+            document.getElementById('result').innerHTML = resultHTML;
+            createSavingChart();
+        }
+
+        function createSavingChart() {
+            let calculationData = JSON.parse(sessionStorage.getItem("calculationData"));
+            if (calculationData) {
+                let labels = calculationData.map(data => "Year " + data.year);
+                let totalSavings = calculationData.map(data => data.total);
+                let totalInvestment = calculationData.map(data => data.investment);
+
+                const graphDiv = document.getElementById("total-savings-graph");
+                graphDiv.innerHTML = ""; // Clear previous chart
+
+                const ctx = document.createElement("canvas");
+                graphDiv.appendChild(ctx);
+
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                                label: 'Total Savings',
+                                data: totalSavings,
+                                borderColor: 'blue',
+                                borderWidth: 2,
+                                fill: false
+                            },
+                            {
+                                label: 'Total Investment',
+                                data: totalInvestment,
+                                borderColor: 'red',
+                                borderWidth: 2,
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Years'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Amount ($)'
+                                },
+                                ticks: {
+                                    callback: function(value) {
+                                        return '$' + value.toLocaleString();
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        label += '$' + context.raw.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Add Show/Hide Table button
+                let tableButton = document.createElement("button");
+                tableButton.className = "btn-show-table";
+                tableButton.innerText = "Show / Hide Table";
+                tableButton.onclick = toggleTable;
+                graphDiv.appendChild(tableButton);
+
+                // Create a div to hold the table
+                let tableDiv = document.createElement("div");
+                tableDiv.id = "calculation-table";
+                tableDiv.classList.add("hidden"); // Initially hidden
+                graphDiv.appendChild(tableDiv);
+                
+                // Create table content immediately
+                refreshTable();
+            }
+        }
+
+        function toggleTable() {
+            const tableDiv = document.getElementById("calculation-table");
+            if (tableDiv.classList.contains("hidden")) {
+                tableDiv.classList.remove("hidden");
+            } else {
+                tableDiv.classList.add("hidden");
+            }
+        }
+
+        function refreshTable() {
+            let calculationData = JSON.parse(sessionStorage.getItem("calculationData"));
+            if (calculationData) {
+                let table = `<table>
+                                <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>Annual Contribution</th>
+                                        <th>Total Investment</th>
+                                        <th>Total Savings</th>
+                                    </tr>
+                                </thead>
+                                <tbody>`;
+                calculationData.forEach(data => {
+                    table += `<tr>
+                                <td>${data.year}</td>
+                                <td>$${data.contribution.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                                <td>$${data.investment.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                                <td>$${data.total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                            </tr>`;
+                });
+                table += `</tbody></table>`;
+
+                const tableDiv = document.getElementById("calculation-table");
+                tableDiv.innerHTML = table;
+            }
+        }
+    </script>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+    }
+
+    .form-container {
+        width: 90%;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #f4f4f9;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        display: block;
+        opacity: 1;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .form-container.fade-out {
+        opacity: 0;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    label {
+        font-size: 16px;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    input[type="number"], select {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    #result {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+    }
+
+    #result h3 {
+        margin-top: 0;
+        color: #2c3e50;
+    }
+
+    #result p {
+        margin: 8px 0;
+        font-size: 16px;
+    }
+
+    .btn-show-table {
+        padding: 10px 20px;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+        margin: 20px 0;
+    }
+
+    .btn-show-table:hover {
+        background: #0056b3;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background: #007bff;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #e9e9e9;
+    }
+</style>

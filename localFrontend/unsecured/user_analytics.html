@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACI Group</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <style>
+    #analytics .grid {
+        min-height: 300px; /* Ensures all chart containers are the same height */
+    }
+    
+    canvas {
+        height: 250px !important;
+        width: 100% !important;
+    }
+    .checked-label {
+        background-color: #f0f0f0;
+        border-color: #4a90e2;
+        color: #062dba;
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body class="bg-gray-100 text-xs p-4 grid grid-cols-1">
+
+<div>
+    <h1 class="text-4xl"><b>ACI Group</b></h1><br>
+</div>
+<div class="grid grid-cols-6 gap-x-2 gap-y-6">
+    <div class="col-span-6 bg-white shadow-lg rounded-lg" id="analytics">
+        <!-- Tabs -->
+        <div class="flex items-center border-b rounded-lg bg-blue-700" id="analytics-tabs">
+            <label class="p-2 pr-4 font-bold text-white border-b-2 border-transparent">Monthly Analytics</label>
+        </div>
+        <!-- Tab Content -->
+        <div id="analytics-content"></div>
+    </div>
+</div>
+
+<script>
+      
+    // Analytics Module
+    async function user_analytics() {
+        const analytics = JSON.parse(sessionStorage.getItem('user_analytics'));
+        if (!analytics || !analytics.years || !analytics.year_months) {
+            console.error('Invalid or missing analytics data.');
+            return;
+        }
+
+        // Function to generate a chart for a specific year
+        function generateAnalyticsChart(year, monthsData) {
+            const ctx = document.getElementById(`chart-${year}`).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(monthsData),
+                    datasets: [{
+                        label: `Monthly Data for ${year}`,
+                        data: Object.values(monthsData),
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true }
+                    },
+                    plugins: {
+                        tooltip: { enabled: true },
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'top',
+                            formatter: (value) => value.toFixed(2),
+                            color: '#000',
+                            font: { weight: 'bold' }
+                        }
+                    }
+                },
+                plugins: [ChartDataLabels]
+            });
+        }
+
+        const analyticsTabs = document.getElementById('analytics-tabs');
+        const analyticsContent = document.getElementById('analytics-content');
+
+        // Clear existing content
+        analyticsTabs.innerHTML = '<label class="p-2 pr-4 font-bold text-white border-b-2 border-transparent">Monthly Analytics</label>';
+        analyticsContent.innerHTML = '';
+
+        // Find the latest year
+        const latestYear = Math.max(...analytics.years);
+
+        // Add tabs and content for each year
+        analytics.years.forEach((year) => {
+            // Add tab
+            analyticsTabs.innerHTML += `
+                <label for="analytics-${year}" class="cursor-pointer py-1 px-2 mr-1 text-white hover:text-blue-700 border border-white rounded-lg hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">
+                    ${year}
+                </label>
+            `;
+
+            // Add content
+            analyticsContent.innerHTML += `
+                <input type="radio" name="analytics" id="analytics-${year}" class="hidden peer/analytics-${year}">
+                <div class="hidden peer-checked/analytics-${year}:block px-2 py-4 w-full">
+                    <canvas id="chart-${year}" style="height: 250px;"></canvas>
+                </div>
+            `;
+            // After adding all elements to the DOM, set the latest year as checked
+            const latestYearInput = document.querySelector(`#analytics-${latestYear}`);
+            if (latestYearInput) {
+                latestYearInput.checked = true;    
+            }
+        });
+
+        // Generate charts after the DOM is updated
+
+        analytics.years.forEach((year) => {
+            const monthsData = analytics.year_months.find(item => item.year === year)?.months || {};
+            generateAnalyticsChart(year, monthsData);
+        });
+
+    }
+
+    // Modules
+    const modules = {
+        user_analytics: user_analytics, // Map 'analytics' to the `analytics` function
+    };
+
+    // Function to Fetch data from API and save data in session storage
+    async function callApi(endpoint) {
+        if (sessionStorage.getItem(endpoint)) {
+            console.log(`${endpoint} Data already exists in sessionStorage. Skipping API call.`);
+            return;
+        }
+        try {
+            const response = await fetch(`http://localhost:4090/${endpoint}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify({ username: '1111111' })
+            });
+            // Check if the response is OK (status code 200-299)
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const apiData = await response.json();
+            if (apiData.success) {
+                sessionStorage.setItem(endpoint, JSON.stringify(apiData.data));
+                console.log(`Data for ${endpoint} saved to sessionStorage.`);
+            } else {
+                alert('Failed: ' + apiData.message);
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+    
+    // Function to call API Endpoints for each module and load its content
+    async function fetchAndLoadData() {
+        for (const module of Object.keys(modules)) {
+            await callApi(module); // Wait for the API call to complete
+            if (modules[module] && typeof modules[module] === 'function') {
+                modules[module](); // Call the module-specific function
+            } else {
+                console.warn(`Function for module ${module} does not exist.`);
+            }
+        }
+    }
+
+    // Function to check which radio buttons are checked and format their labels
+    function checkRadioButtons() {
+        // Get all radio buttons
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        
+        // Iterate through each radio button
+        radioButtons.forEach(radio => {
+            // Get the associated label using the 'for' attribute
+            const label = document.querySelector(`label[for="${radio.id}"]`);
+            
+            // If the radio button is checked, add the 'checked-label' class to the label
+            if (radio.checked) {
+                label.classList.add('checked-label');
+                label.classList.remove('text-white');
+            } else {
+                label.classList.remove('checked-label');
+                label.classList.add('text-white');
+            }
+        });
+    }
+    
+    // Load All Required on Page Startup
+    document.addEventListener('DOMContentLoaded', fetchAndLoadData);
+    // Initial check when the page loads
+    checkRadioButtons();
+
+    // Add event listeners to radio buttons to update the labels when changed
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', checkRadioButtons);
+    });
+</script> 
+</body>
+</html>

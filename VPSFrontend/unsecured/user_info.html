@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACI Group</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <style>
+    #analytics .grid {
+        min-height: 300px; /* Ensures all chart containers are the same height */
+    }
+    
+    canvas {
+        height: 250px !important;
+        width: 100% !important;
+    }
+    .checked-label {
+        background-color: #f0f0f0;
+        border-color: #4a90e2;
+        color: #062dba;
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body class="bg-gray-100 text-xs p-4 grid grid-cols-1">
+
+<div>
+    <h1 class="text-4xl"><b>ACI Group</b></h1><br>
+</div>
+<div class="grid grid-cols-6 gap-x-2 gap-y-6">
+    <div class="col-span-2 bg-white shadow-lg rounded-lg">
+        <!-- Tabs -->
+        <div class="flex items-center border-b rounded-lg bg-blue-700">
+            <label class="p-2 pr-4 font-bold text-white border-b-2 border-transparent">Info</label>
+            <label for="info-stats" class="cursor-pointer py-1 px-2 mr-1 text-white hover:text-blue-700 border border-white rounded-lg hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">Stats</label>
+            <label for="info-general" class="cursor-pointer py-1 px-2 mr-1 text-white hover:text-blue-700 border border-white rounded-lg hover:bg-white peer-checked:border-blue-500 peer-checked:text-blue-500">General</label>
+        </div>
+        
+        <!-- Tab Content -->
+        <input type="radio" name="info" class="hidden peer/info-stats" id="info-stats" checked>
+        <div class="hidden peer-checked/info-stats:block px-2 py-4" id="info-stats-content">Content for stats</div>
+        
+        <input type="radio" name="info" class="hidden peer/info-general" id="info-general">
+        <div class="hidden peer-checked/info-general:block px-2 py-4" id="info-general-content">Content for general</div>
+    </div>
+</div>
+
+<script>
+    // Info Module
+    async function user_info() {
+        const info = JSON.parse(sessionStorage.getItem("user_info"));
+        if (!info) {
+            console.error('No data found for the info module.');
+            return;
+        }
+        // Populate the info stats tab with the data
+        const infoStatsContentHTML = `
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Gain:</h5>
+                </div>
+                <div class="text-left">
+                    <h5 class="text-green-500">${info[0].gain}</h5>
+                </div>
+            </div>
+            <div class="border-b flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Abs Gain:</h5>
+                </div>
+                <div class="text-left">
+                    <h5 class="text-green-500">+${info[0].abs_gain}</h5>
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Daily:</h5>
+                </div>
+                <div class="text-left">
+                    <h5>0.05% (Dummy)</h5>
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Monthly:</h5>
+                </div>
+                <div class="text-left">
+                    <h5>4.0% (Dummy)</h5>
+                </div>
+            </div>
+            <div class="border-b flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Drawdown:</h5>
+                </div>
+                <div class="text-left">
+                    <h5>15.52% (Dummy)</h5>
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Balance:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].balance}
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Equity:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].equity}
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Highest:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].highest_balance}
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Profit:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].net_profit}
+                </div>
+            </div>
+            <div class="border-b flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Intrest:</h5>
+                </div>
+                <div class="text-left">
+                    <h5>0</h5>
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Deposits:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].deposits}
+                </div>
+            </div>
+            <div class="border-b flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Withdrawals:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].withdrawals}
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Updated:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].updated_at}
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Tracking:</h5>
+                </div>
+                <div class="text-left">
+                    <h5>0</h5>
+                </div>
+            </div>
+        `;
+        // Populate the info general tab with the data
+        const infoGeneralContentHTML = `
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>LoginID:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].login} <!-- Explicitly embed login ID -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Currency:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].currency} <!-- Explicitly embed currency -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Credit:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].credit} <!-- Explicitly embed credit -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Leverage:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].leverage} <!-- Explicitly embed leverage -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Liabilities:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].liabilities} <!-- Explicitly embed liabilities -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Order Limit:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].limit_orders} <!-- Explicitly embed limit_orders -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Margin:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].margin} <!-- Explicitly embed deposit -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Margin Free:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].margin_free} <!-- Explicitly embed deposit_free -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Margin Mode:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].margin_mode} <!-- Explicitly embed deposit_mode -->
+                </div>
+            </div>
+            <div class="border-b flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Margin so call:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].margin_so_call} <!-- Explicitly embed deposit_so_call -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Margin so so:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].margin_so_so} <!-- Explicitly embed deposit_so_so -->
+                </div>
+            </div>
+            <div class="border-b flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Trade Allowed:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].trade_allowed} <!-- Explicitly embed trade_allowed -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Trade expert:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].trade_expert} <!-- Explicitly embed trade_expert -->
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-right">
+                    <h5>Trade Mode:</h5>
+                </div>
+                <div class="text-left">
+                    ${info[0].trade_mode} <!-- Explicitly embed trade_mode -->
+                </div>
+            </div>
+        `;    
+        document.getElementById('info-stats-content').innerHTML = infoStatsContentHTML;
+        document.getElementById('info-general-content').innerHTML = infoGeneralContentHTML;
+    }
+
+    // Modules
+    const modules = {
+        user_info: user_info, // Map 'info' to the `info` function
+    };
+
+    // Function to Fetch data from API and save data in session storage
+    async function callApi(endpoint) {
+        if (sessionStorage.getItem(endpoint)) {
+            console.log(`${endpoint} Data already exists in sessionStorage. Skipping API call.`);
+            return;
+        }
+        try {
+            const response = await fetch(`http://Your-VPS-Address:4090/${endpoint}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify({ username: '1111111' })
+            });
+            // Check if the response is OK (status code 200-299)
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const apiData = await response.json();
+            if (apiData.success) {
+                sessionStorage.setItem(endpoint, JSON.stringify(apiData.data));
+                console.log(`Data for ${endpoint} saved to sessionStorage.`);
+            } else {
+                alert('Failed: ' + apiData.message);
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+    
+    // Function to call API Endpoints for each module and load its content
+    async function fetchAndLoadData() {
+        for (const module of Object.keys(modules)) {
+            await callApi(module); // Wait for the API call to complete
+            if (modules[module] && typeof modules[module] === 'function') {
+                modules[module](); // Call the module-specific function
+            } else {
+                console.warn(`Function for module ${module} does not exist.`);
+            }
+        }
+    }
+
+    // Function to check which radio buttons are checked and format their labels
+    function checkRadioButtons() {
+        // Get all radio buttons
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        
+        // Iterate through each radio button
+        radioButtons.forEach(radio => {
+            // Get the associated label using the 'for' attribute
+            const label = document.querySelector(`label[for="${radio.id}"]`);
+            
+            // If the radio button is checked, add the 'checked-label' class to the label
+            if (radio.checked) {
+                label.classList.add('checked-label');
+                label.classList.remove('text-white');
+            } else {
+                label.classList.remove('checked-label');
+                label.classList.add('text-white');
+            }
+        });
+    }
+    
+    // Load All Required on Page Startup
+    document.addEventListener('DOMContentLoaded', fetchAndLoadData);
+    // Initial check when the page loads
+    checkRadioButtons();
+
+    // Add event listeners to radio buttons to update the labels when changed
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', checkRadioButtons);
+    });
+</script> 
+</body>
+</html>

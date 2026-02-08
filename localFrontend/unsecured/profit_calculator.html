@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Profit Calculator</title>
+</head>
+<body>
+    <div class="form-container" id="margin-calculator">
+        <h2>Profit Calculator</h2>
+        <form id="calculator-form">
+            <label for="symbol">Symbol:</label>
+            <select id="symbol" name="symbol" required>
+                <option value="EURUSD">EURUSD</option>
+                <option value="GBPUSD">GBPUSD</option>
+                <option value="USDJPY">USDJPY</option>
+                <option value="USDCHF">USDCHF</option>
+                <option value="EURJPY">EURJPY</option>
+                <option value="GBPJPY">GBPJPY</option>
+            </select>
+
+            <label for="volume">Volume:</label>
+            <input type="number" id="volume" name="volume" step="0.01" required>
+
+            <label for="action">Order Type:</label>
+            <select id="action" name="action" required>
+                <option value="0">BUY</option>
+                <option value="1">SELL</option>
+                <option value="2">BUY LIMIT</option>
+                <option value="3">SELL LIMIT</option>
+                <option value="4">BUY STOP</option>
+                <option value="5">SELL STOP</option>
+                <option value="6">BUY STOP LIMIT</option>
+                <option value="7">SELL STOP LIMIT</option>
+                <option value="8">CLOSE BY</option>
+            </select>
+
+            <label for="price_open">Price Open:</label>
+            <input type="number" id="price_open" name="price_open" step="0.0001" required>
+
+            <label for="price_close">Price Close:</label>
+            <input type="number" id="price_close" name="price_close" step="0.0001" required>
+
+            <button type="button" onclick="calculateProfit()">Calculate</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function calculateProfit() {
+            const symbol = document.getElementById('symbol').value;
+            const volume = parseFloat(document.getElementById('volume').value);
+            const action = parseInt(document.getElementById('action').value);
+            const price_open = parseFloat(document.getElementById('price_open').value);
+            const price_close = parseFloat(document.getElementById('price_close').value);
+
+            const requestData = { symbol, volume, action, price_open, price_close };
+            
+            try {
+                const response = await fetch('http://localhost:4090/user_order_calc_profit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestData)
+                });
+                const data = await response.json();
+                if (data.success) {
+                    document.getElementById('result').innerHTML = `<p>Profit: $${data.data.profit.toFixed(2)}</p>`;
+                } else {
+                    document.getElementById('result').innerHTML = `<p style="color:red;">Error: ${data.message}</p>`;
+                }
+            } catch (error) {
+                document.getElementById('result').innerHTML = `<p style="color:red;">Request Failed: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+    }
+
+    .form-container {
+        width: 90%;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #f4f4f9;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        display: block;
+        opacity: 1;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .form-container.fade-out {
+        opacity: 0;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    label {
+        font-size: 16px;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    input[type="number"], select {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    .hidden-content {
+        display: none;
+        text-align: center;
+        padding: 20px;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+    }
+    .btn-show-table {
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 20px;
+    display: block;
+    width: fit-content;
+    }
+
+    .btn-show-table:hover {
+        background: #0056b3;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        margin-top: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background: #007bff;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background: #f2f2f2;
+    }
+
+</style>
+</html>

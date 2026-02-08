@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+httpx
+python-dotenv
+cryptography
+redis
+sqlalchemy
+pandas
+pyjwt
+MetaTrader5
+python-dateutil
+
+pip install fastapi uvicorn httpx python-dotenv cryptography redis sqlalchemy pandas pyjwt MetaTrader5 python-dateutil
